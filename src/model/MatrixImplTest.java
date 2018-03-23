@@ -12,6 +12,11 @@ public class MatrixImplTest {
 
     private void setup() {
         this.matrix = new MatrixImpl(ROWS, COLUMNS);
+        this.printGeneration(0);
+    }
+
+    private void printGeneration(final int generation) {
+        System.out.println("Generation: " + generation);
         for(int i = 0; i < ROWS; i++) {
             for(int j = 0; j < COLUMNS; j++) {
                 System.out.print(this.matrix.getCell(i, j).getCurrentState() + " ");
@@ -52,5 +57,16 @@ public class MatrixImplTest {
 
     @Test
     public void updateCell() {
+
+    }
+
+    @Test
+    public void lifeTest() {
+        this.setup();
+        for(int i = 0; i < 10; i++) {
+            this.matrix.update();
+            this.matrix.computeUpdate();
+            this.printGeneration(i);
+        }
     }
 }

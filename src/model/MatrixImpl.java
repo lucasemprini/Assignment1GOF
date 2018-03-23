@@ -32,24 +32,14 @@ public class MatrixImpl implements Matrix {
     }
 
     /**
-     * Metodo che controlla che una coordinata x sia compresa nella matrice.
+     * Metodo che controlla che una coordinata x o y sia compresa nella matrice.
      * Da usare nel metodo che controlla i vicini.
-     * @param x la coordinata x.
+     * @param x la coordinata x: riga o colonna.
+     * @param isRow true se sto considerando le righe, false altimenti.
      * @return true se è compresa nella matrice, false altrimenti.
      */
-    private boolean isRowInBound(final int x) {
-        return x >= 0 && x < numRows;
-    }
-
-
-    /**
-     * Metodo che controlla che una coordinata y sia compresa nella matrice.
-     * Da usare nel metodo che controlla i vicini.
-     * @param y la coordinata y.
-     * @return true se è compresa nella matrice, false altrimenti.
-     */
-    private boolean isColumnInBound(final int y) {
-        return y >= 0 && y < numColumns;
+    private boolean isInBound(final int x, final boolean isRow) {
+        return isRow ? x >= 0 && x < numRows : x >= 0 && x < numColumns;
     }
 
     @Override
@@ -69,7 +59,11 @@ public class MatrixImpl implements Matrix {
 
     @Override
     public void update() {
-
+        for(int i = 0; i < numRows; i++) {
+            for(int j = 0; j < numColumns; j++) {
+                this.updateCell(i, j);
+            }
+        }
     }
 
     @Override
@@ -81,11 +75,10 @@ public class MatrixImpl implements Matrix {
     public int getNumNeighboursAlive(int x, int y) {
         int counterAlive = 0;
         for(int i = x - 1; i <= x + 1; i++) {
-            if(isRowInBound(i)) {
+            if(isInBound(i, true)) {
                 for(int j = y - 1; j <= y + 1; j++) {
-                    if(isColumnInBound(j)) {
+                    if(isInBound(j, false)) {
                         if(matrix[i][j].getCurrentState()) {
-                            System.out.println("Coordinata x = " + i + " Coordinata y = "+ j);
                             counterAlive++;
                         }
                     }
@@ -100,5 +93,14 @@ public class MatrixImpl implements Matrix {
         this.matrix[x][y].setNextState(RulesUtility.nextStatus(
                 this.getNumNeighboursAlive(x, y),
                 this.matrix[x][y].getCurrentState()));
+    }
+
+    @Override
+    public void computeUpdate() {
+        for(int i = 0; i < numRows; i++) {
+            for(int j = 0; j < numColumns; j++) {
+                matrix[i][j].updateState();
+            }
+        }
     }
 }

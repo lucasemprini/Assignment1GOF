@@ -50,4 +50,9 @@ public interface Matrix {
      * @param y la coordinata y.
      */
     public void updateCell(final int x, final int y);
+
+    /**
+     * Metodo che aggiorna effettivamente lo stato corrente di ogni cella.
+     */
+    public void computeUpdate();
 }
