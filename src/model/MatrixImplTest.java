@@ -19,7 +19,7 @@ public class MatrixImplTest {
         System.out.println("Generation: " + generation);
         for(int i = 0; i < ROWS; i++) {
             for(int j = 0; j < COLUMNS; j++) {
-                System.out.print(this.matrix.getCell(i, j).getCurrentState() + " ");
+                System.out.print(this.matrix.getCellAt(i, j).getCurrentState() + " ");
             }
             System.out.println("\n");
         }
@@ -43,16 +43,6 @@ public class MatrixImplTest {
 
     @Test
     public void update() {
-    }
-
-    @Test
-    public void getCell() {
-    }
-
-    @Test
-    public void getNumNeighboursAlive() {
-        this.setup();
-        System.out.println(this.matrix.getNumNeighboursAlive(0, 0));
     }
 
     @Test
