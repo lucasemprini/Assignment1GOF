@@ -1,4 +1,6 @@
 package model;
+import model.utility.RulesUtility;
+
 import java.util.Random;
 
 public class MatrixImpl implements Matrix {

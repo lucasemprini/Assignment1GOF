@@ -34,4 +34,8 @@ public class SampleController {
      public void setScrollPane() {
         //TODO configura lo ScrollPane.
      }
+
+     public void updateLabelGenerations() {
+        //TODO Aggiorna la Label delle generazioni.
+     }
 }
