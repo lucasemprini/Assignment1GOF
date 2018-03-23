@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public interface Matrix {
 
     /**
@@ -33,4 +35,19 @@ public interface Matrix {
      * @return la Cella selezionata.
      */
     public Cell getCell(final int x, final int y);
+
+    /**
+     * Metodo che restituisce il numero di vicini vivi per la cella specificata.
+     * @param x la coordinata x della cella.
+     * @param y la coordinata y della cella.
+     * @return il numero dei vicini vivi compresa la cella stessa.
+     */
+    public int getNumNeighboursAlive(final int x, final int y);
+
+    /**
+     * Metodo per aggiornare una cella.
+     * @param x la coordinata x.
+     * @param y la coordinata y.
+     */
+    public void updateCell(final int x, final int y);
 }
