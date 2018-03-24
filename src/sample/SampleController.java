@@ -46,10 +46,13 @@ public class SampleController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.setResizeOptions();
-        this.setGridPane(NUMROWS, NUMCOLUMNS);
+        this.addCellsToGridPane(NUMROWS, NUMCOLUMNS);
         this.setScrollPane();
     }
 
+    /**
+     * Metodo per settare le preferenze di Resize dei vari pannelli.
+     */
     @FXML
     private void setResizeOptions() {
         this.scrollPane.prefHeightProperty().bind(anchorPane.heightProperty());
@@ -57,20 +60,39 @@ public class SampleController implements Initializable {
         this.buttonPane.prefWidthProperty().bind(anchorPane.widthProperty());
     }
 
-    @FXML
-    private void setGridPane(final int numRows, final int numColumns) {
+    /**
+     * Metodo utilizzato per costruire le celle della griglia di gioco.
+     * @param numRows il numero di righe.
+     * @param numColumns il numero di colonne.
+     */
+    private void addCellsToGridPane(final int numRows, final int numColumns) {
+        for (int row = 0; row < numRows; row++) {
+            for (int col = 0; col < numColumns; col++) {
+                GameCell cell = new GameCell(CELL_DIMENSION, CELL_DIMENSION,
+                        myMatrix.getCellAt(row, col).getCurrentState());
+                gameGrid.add(cell, col, row);
+            }
+        }
+    }
 
+    /**
+     * Metodo per settare le preferenze sullo ScrollPane
+     */
+    @FXML
+    private void setScrollPane() {
+        this.scrollPane.setContent(this.gameGrid);
+        this.scrollPane.setFitToWidth(true);
+        this.scrollPane.setFitToHeight(true);
+        this.scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        this.scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+    }
+
+    /*SERVE???? Probabilmente no.*/
+    private void setGridConstraints(final int numRows, final int numColumns) {
         ColumnConstraints colConst = new ColumnConstraints();
         RowConstraints rowConst = new RowConstraints();
         rowConst.setPercentHeight(100.0 / numRows);
         colConst.setPercentWidth(100.0 / numColumns);
-
-        for (int row = 0; row < numRows; row++) {
-            for (int col = 0; col < numColumns; col++) {
-                GameCell cell = new GameCell(CELL_DIMENSION, CELL_DIMENSION, myMatrix.getCellAt(row, col).getCurrentState());
-                gameGrid.add(cell, col, row);
-            }
-        }
         for (int i = 0; i < numColumns; i++) {
             gameGrid.getColumnConstraints().add(colConst);
         }
@@ -85,15 +107,6 @@ public class SampleController implements Initializable {
 
     public void addListenersToButtons() {
         //TODO Aggiungi onClickListeners ai due bottoni.
-     }
-
-     @FXML
-     private void setScrollPane() {
-        this.scrollPane.setContent(this.gameGrid);
-        this.scrollPane.setFitToWidth(true);
-        this.scrollPane.setFitToHeight(true);
-        this.scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-         this.scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
      }
 
      public void updateLabelGenerations() {
