@@ -11,6 +11,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import model.Matrix;
 import model.MatrixImpl;
+import model.utility.DebugUtility;
 import view.GameCell;
 
 import java.net.URL;
@@ -21,6 +22,9 @@ public class SampleController implements Initializable {
     private static final int NUMCOLUMNS = 100;
     private static final int NUMROWS = 100;
     private static final int CELL_DIMENSION = 10;
+    private static final String LABEL_INTRO = "Generations: ";
+    private boolean isRunning = false;
+    private int numGenerations = 0;
 
     private final Matrix myMatrix;
 
@@ -46,8 +50,10 @@ public class SampleController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.setResizeOptions();
-        this.addCellsToGridPane(NUMROWS, NUMCOLUMNS);
+        this.addCellsToGridPane();
         this.setScrollPane();
+        this.addListenersToButtons();
+        this.updateLabelGenerations();
     }
 
     /**
@@ -62,12 +68,10 @@ public class SampleController implements Initializable {
 
     /**
      * Metodo utilizzato per costruire le celle della griglia di gioco.
-     * @param numRows il numero di righe.
-     * @param numColumns il numero di colonne.
      */
-    private void addCellsToGridPane(final int numRows, final int numColumns) {
-        for (int row = 0; row < numRows; row++) {
-            for (int col = 0; col < numColumns; col++) {
+    private void addCellsToGridPane() {
+        for (int row = 0; row < myMatrix.getNumRows(); row++) {
+            for (int col = 0; col < myMatrix.getNumColumns(); col++) {
                 GameCell cell = new GameCell(CELL_DIMENSION, CELL_DIMENSION,
                         myMatrix.getCellAt(row, col).getCurrentState());
                 gameGrid.add(cell, col, row);
@@ -87,6 +91,47 @@ public class SampleController implements Initializable {
         this.scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
     }
 
+    /**
+     * Metodo che setta i listener ai bottoni.
+     */
+    private void addListenersToButtons() {
+        this.buttonStart.setOnAction( e -> {
+            this.isRunning = true;
+            //TODO FA MERDA.
+            this.myMatrix.update();
+            this.myMatrix.computeUpdate();
+            DebugUtility.printMatrix(myMatrix, numGenerations);
+            this.updateGridPane();
+            this.numGenerations++;
+            this.updateLabelGenerations();
+        });
+
+        this.buttonStop.setOnAction( e -> {
+            this.isRunning = false;
+            //TODO
+        });
+     }
+
+    /**
+     * Metodo INEFFICENTE, utile solo ai fini di test.
+     */
+    private void updateGridPane() {
+        for (int row = 0; row < NUMROWS; row++) {
+            for (int col = 0; col < NUMCOLUMNS; col++) {
+                GameCell cell = new GameCell(CELL_DIMENSION, CELL_DIMENSION,
+                        myMatrix.getCellAt(row, col).getCurrentState());
+                gameGrid.add(cell, col, row);
+            }
+        }
+     }
+
+    /**
+     * Metodo che aggiorna la label che tiene il conto delle generazioni trascorse.
+     */
+    private void updateLabelGenerations() {
+        this.generationsLabel.setText(LABEL_INTRO + this.numGenerations);
+    }
+
     /*SERVE???? Probabilmente no.*/
     private void setGridConstraints(final int numRows, final int numColumns) {
         ColumnConstraints colConst = new ColumnConstraints();
@@ -100,17 +145,4 @@ public class SampleController implements Initializable {
             gameGrid.getRowConstraints().add(rowConst);
         }
     }
-
-    public void addCanvasOnGrid() {
-        //TODO Aggiungi canvas a ogni quadrato della griglia.
-    }
-
-    public void addListenersToButtons() {
-        //TODO Aggiungi onClickListeners ai due bottoni.
-     }
-
-     public void updateLabelGenerations() {
-        //TODO Aggiorna la Label delle generazioni.
-     }
-
 }

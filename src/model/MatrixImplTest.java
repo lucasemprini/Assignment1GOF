@@ -7,8 +7,8 @@ import static org.junit.Assert.*;
 
 public class MatrixImplTest {
 
-    private static final int ROWS = 1000;
-    private static final int COLUMNS = 1000;
+    private static final int ROWS = 10;
+    private static final int COLUMNS = 10;
     private Matrix matrix;
 
     private void setup() {
@@ -60,7 +60,7 @@ public class MatrixImplTest {
         for(int i = 0; i < 10; i++) {
             this.matrix.update();
             this.matrix.computeUpdate();
-            //this.printGeneration(i);
+            this.printGeneration(i);
         }
         cron.stop();
         System.out.println("Time elapsed: "+cron.getTime()+" ms.");
