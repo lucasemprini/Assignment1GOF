@@ -1,30 +1,22 @@
 package model;
+
 import model.utility.RulesUtility;
 
 import java.util.Random;
 
-public class MatrixImpl implements Matrix {
+public class SmoothMatrix implements Matrix {
+
 
     private final int numRows;
     private final int numColumns;
 
-    private final Cell[][] matrix;
+    private final boolean[][] matrix;
 
-    public MatrixImpl(final int numRows, final int numColumns) {
-        this.numColumns = numColumns;
+    public SmoothMatrix(final int numRows, final int numColumns) {
         this.numRows = numRows;
-        this.matrix = new Cell[numRows][numColumns];
+        this.numColumns = numColumns;
+        this.matrix  = new boolean[numRows][numColumns];
         this.generateRandomMatrix();
-    }
-
-    @Override
-    public void generateRandomMatrix() {
-        final Random r = new Random();
-        for(int i=0; i<numRows; i++) {
-            for(int j=0; j<numColumns; j++) {
-                this.matrix[i][j] = new CellImpl(r.nextBoolean());
-            }
-        }
     }
 
     /**
@@ -44,9 +36,10 @@ public class MatrixImpl implements Matrix {
      * @param y la coordinata y.
      */
     private void updateCell(int x, int y) {
-        this.matrix[x][y].setNextState(RulesUtility.nextStatus(
+        this.matrix[x][y] = RulesUtility.nextStatus(
                 this.getNumNeighboursAlive(x, y),
-                this.matrix[x][y].getCurrentState()));
+                this.matrix[x][y]);
+        //TODO
     }
 
     /**
@@ -61,7 +54,7 @@ public class MatrixImpl implements Matrix {
             if(isInBound(i, true)) {
                 for(int j = y - 1; j <= y + 1; j++) {
                     if(isInBound(j, false)) {
-                        if(matrix[i][j].getCurrentState()) {
+                        if(matrix[i][j]) {
                             counterAlive++;
                         }
                     }
@@ -82,8 +75,17 @@ public class MatrixImpl implements Matrix {
     }
 
     @Override
+    public void generateRandomMatrix() {
+        final Random r = new Random();
+        for(int i=0; i<numRows; i++) {
+            for(int j=0; j<numColumns; j++) {
+                this.matrix[i][j] = r.nextBoolean();
+            }
+        }
+    }
+
+    @Override
     public boolean isOver() {
-        //TODO
         return false;
     }
 
@@ -98,16 +100,11 @@ public class MatrixImpl implements Matrix {
 
     @Override
     public boolean getCellAt(int x, int y) {
-        return this.matrix[x][y].getCurrentState();
+        return matrix[x][y];
     }
-
 
     @Override
     public void computeUpdate() {
-        for(int i = 0; i < numRows; i++) {
-            for(int j = 0; j < numColumns; j++) {
-                matrix[i][j].updateState();
-            }
-        }
+
     }
 }

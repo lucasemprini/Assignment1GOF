@@ -10,7 +10,7 @@ public final class DebugUtility {
         System.out.println("Generation: " + gen);
         for(int i = 0; i < myMatrix.getNumRows(); i++) {
             for(int j = 0; j < myMatrix.getNumColumns(); j++) {
-                System.out.print(myMatrix.getCellAt(i, j).getCurrentState() + " ");
+                System.out.print(myMatrix.getCellAt(i, j) + " ");
             }
             System.out.println("\n");
         }

@@ -17,6 +17,12 @@ public interface Matrix {
     public int getNumColumns();
 
     /**
+     * Metodo da usare nel costruttore per generare una matrice di celle
+     * inizializzata con valori Random.
+     */
+    public void generateRandomMatrix();
+
+    /**
      * Metodo che permette di capire se la matrice ha terminato le possibilità di
      * progredire
      * @return true se altre generazioni sono possibili, false altrimenti
@@ -34,7 +40,7 @@ public interface Matrix {
      * @param y la coordinata y.
      * @return la Cella selezionata.
      */
-    public Cell getCellAt(final int x, final int y);
+    public boolean getCellAt(final int x, final int y);
 
 
     /**

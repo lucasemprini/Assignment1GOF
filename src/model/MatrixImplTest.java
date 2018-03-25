@@ -19,7 +19,7 @@ public class MatrixImplTest {
         System.out.println("Generation: " + generation);
         for(int i = 0; i < ROWS; i++) {
             for(int j = 0; j < COLUMNS; j++) {
-                System.out.print(this.matrix.getCellAt(i, j).getCurrentState() + " ");
+                System.out.print(this.matrix.getCellAt(i, j) + " ");
             }
             System.out.println("\n");
         }

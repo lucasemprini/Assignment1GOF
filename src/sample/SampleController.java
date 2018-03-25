@@ -11,6 +11,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import model.Matrix;
 import model.MatrixImpl;
+import model.SmoothMatrix;
 import model.utility.DebugUtility;
 import view.GameCell;
 
@@ -45,6 +46,7 @@ public class SampleController implements Initializable {
 
     public SampleController() {
         this.myMatrix = new MatrixImpl(NUMROWS, NUMCOLUMNS);
+        //TODO this.myMatrix = new SmoothMatrix(NUMROWS, NUMCOLUMNS);
     }
 
     @Override
@@ -73,7 +75,7 @@ public class SampleController implements Initializable {
         for (int row = 0; row < myMatrix.getNumRows(); row++) {
             for (int col = 0; col < myMatrix.getNumColumns(); col++) {
                 GameCell cell = new GameCell(CELL_DIMENSION, CELL_DIMENSION,
-                        myMatrix.getCellAt(row, col).getCurrentState());
+                        myMatrix.getCellAt(row, col));
                 gameGrid.add(cell, col, row);
             }
         }
@@ -119,7 +121,7 @@ public class SampleController implements Initializable {
         for (int row = 0; row < NUMROWS; row++) {
             for (int col = 0; col < NUMCOLUMNS; col++) {
                 GameCell cell = new GameCell(CELL_DIMENSION, CELL_DIMENSION,
-                        myMatrix.getCellAt(row, col).getCurrentState());
+                        myMatrix.getCellAt(row, col));
                 gameGrid.add(cell, col, row);
             }
         }
