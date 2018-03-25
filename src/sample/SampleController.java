@@ -131,18 +131,4 @@ public class SampleController implements Initializable {
     private void updateLabelGenerations() {
         this.generationsLabel.setText(LABEL_INTRO + this.numGenerations);
     }
-
-    /*SERVE???? Probabilmente no.*/
-    private void setGridConstraints(final int numRows, final int numColumns) {
-        ColumnConstraints colConst = new ColumnConstraints();
-        RowConstraints rowConst = new RowConstraints();
-        rowConst.setPercentHeight(100.0 / numRows);
-        colConst.setPercentWidth(100.0 / numColumns);
-        for (int i = 0; i < numColumns; i++) {
-            gameGrid.getColumnConstraints().add(colConst);
-        }
-        for (int i = 0; i < numRows; i++) {
-            gameGrid.getRowConstraints().add(rowConst);
-        }
-    }
 }
