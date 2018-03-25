@@ -16,6 +16,16 @@ import java.io.IOException;
 
 public class Main extends Application {
 
+
+    private final BorderPane rootBorder = new BorderPane();
+    private final FlowPane flowPane = new FlowPane();
+    private final TextField rowsField = new TextField();
+    private final TextField columnsField = new TextField();
+    private final Label presentationLabel = new Label("Select your preferred dimensions for the Game Matrix: ");
+    private final Label rowsLabel = new Label("Rows: ");
+    private final Label columnsLabel = new Label("Columns: ");
+    private final Button dimensionsChosen = new Button("OK");
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -23,10 +33,10 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         Scene scene = selectDimensionScene(primaryStage);
-        //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        //Parent rootBorder = FXMLLoader.load(getClass().getResource("sample.fxml"));
 
         primaryStage.setTitle("GameOfLife");
-        //primaryStage.setScene(new Scene(root));
+        //primaryStage.setScene(new Scene(rootBorder));
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -36,38 +46,58 @@ public class Main extends Application {
      * @param primaryStage il primary stage.
      * @return la finestra in questione.
      */
-    private Scene selectDimensionScene(Stage primaryStage){
-        BorderPane root = new BorderPane();
-        FlowPane pane = new FlowPane();
-        TextField rowsField = new TextField();
-        TextField columnsField = new TextField();
-        Label presentationLabel = new Label("Select your preferred dimensions for the Game Matrix: ");
-        Label rowsLabel = new Label("Rows: ");
-        Label columnsLabel = new Label("Columns: ");
+    private Scene selectDimensionScene(final Stage primaryStage){
+        this.setUpOkButton(primaryStage);
+        this.setUpFlowPane();
+        this.addPaddingInsets();
+        this.setUpBorderPane();
+        return new Scene(rootBorder);
+    }
 
-        Button dimensionsChosen = new Button("OK");
-        dimensionsChosen.prefWidthProperty().bind(root.widthProperty());
+    /**
+     * Metodo che setta i vari parametri grafici del bottone della finestra iniziale.
+     * @param primaryStage il primary stage.
+     */
+    private void setUpOkButton(final Stage primaryStage) {
+        dimensionsChosen.prefWidthProperty().bind(rootBorder.widthProperty());
         dimensionsChosen.setOnAction( event ->  {
-                try {
-                    primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("sample.fxml"))));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            try {
+                primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("sample.fxml"))));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
-        pane.setOrientation(Orientation.HORIZONTAL);
-        pane.getChildren().add(rowsLabel);
-        pane.getChildren().add(rowsField);
-        pane.getChildren().add(columnsLabel);
-        pane.getChildren().add(columnsField);
+    }
+
+    /**
+     * Metodo che setta un BorderPane della finestra iniziale.
+     */
+    private void setUpBorderPane() {
+        rootBorder.setTop(presentationLabel);
+        rootBorder.setLeft(flowPane);
+        rootBorder.setBottom(dimensionsChosen);
+    }
+
+    /**
+     * Metodo che setta un FlowPane della finestra iniziale.
+     */
+    private void setUpFlowPane() {
+        flowPane.setOrientation(Orientation.HORIZONTAL);
+        flowPane.getChildren().add(rowsLabel);
+        flowPane.getChildren().add(rowsField);
+        flowPane.getChildren().add(columnsLabel);
+        flowPane.getChildren().add(columnsField);
+    }
+
+    /**
+     * Metodo che aggiusta i padding delle componenti grafiche della finestra iniziale.
+     */
+    private void addPaddingInsets() {
         rowsLabel.setPadding(new Insets(0, 5, 0, 5));
         rowsField.setPadding(new Insets(0, 5, 0, 5));
         columnsField.setPadding(new Insets(0, 5, 0, 5));
         columnsLabel.setPadding(new Insets(0, 5, 0, 5));
-        pane.setPadding(new Insets (10, 0, 10, 0));
-        root.setPadding(new Insets(10, 20, 10, 20));
-        root.setTop(presentationLabel);
-        root.setLeft(pane);
-        root.setBottom(dimensionsChosen);
-        return new Scene(root);
+        flowPane.setPadding(new Insets (10, 0, 10, 0));
+        rootBorder.setPadding(new Insets(10, 20, 10, 20));
     }
 }
