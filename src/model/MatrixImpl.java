@@ -5,8 +5,8 @@ import java.util.Random;
 
 public class MatrixImpl implements Matrix {
 
-    private final int numRows;
-    private final int numColumns;
+    private int numRows;
+    private int numColumns;
 
     private final Cell[][] matrix;
 
@@ -79,6 +79,16 @@ public class MatrixImpl implements Matrix {
     @Override
     public int getNumColumns() {
         return this.numColumns;
+    }
+
+    @Override
+    public void setNumRows(int numRows) {
+        this.numRows = numRows;
+    }
+
+    @Override
+    public void setNumColumns(int numColumns) {
+        this.numColumns = numColumns;
     }
 
     @Override

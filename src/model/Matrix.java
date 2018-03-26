@@ -17,6 +17,19 @@ public interface Matrix {
     public int getNumColumns();
 
     /**
+     * Metodo che setta il numero di righe della matrice
+     * @param numRows il numero di righe.
+     */
+    public void setNumRows(final int numRows);
+
+    /***
+     * Metodo che setta il numero di colonne della matrice
+     * @param numColumns il numero di colonne.
+     *
+     */
+    public void setNumColumns(final int numColumns);
+
+    /**
      * Metodo da usare nel costruttore per generare una matrice di celle
      * inizializzata con valori Random.
      */

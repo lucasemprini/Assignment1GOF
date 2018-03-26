@@ -49,6 +49,11 @@ public class SampleController implements Initializable {
         //TODO this.myMatrix = new SmoothMatrix(NUMROWS, NUMCOLUMNS);
     }
 
+    public void setDimensions(final int numRows, final int numColumns) {
+        this.myMatrix.setNumRows(numRows);
+        this.myMatrix.setNumColumns(numColumns);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.setResizeOptions();
@@ -102,7 +107,7 @@ public class SampleController implements Initializable {
             //TODO FA MERDA.
             this.myMatrix.update();
             this.myMatrix.computeUpdate();
-            DebugUtility.printMatrix(myMatrix, numGenerations);
+            //DebugUtility.printMatrix(myMatrix, numGenerations);
             this.updateGridPane();
             this.numGenerations++;
             this.updateLabelGenerations();
