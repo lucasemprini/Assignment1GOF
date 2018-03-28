@@ -16,15 +16,20 @@ import java.io.IOException;
 
 public class Main extends Application {
 
+    private static final String PRESENTATION_STRING ="Select your preferred dimensions for the Game Matrix: ";
+    private static final String ROWSLABEL ="Rows: ";
+    private static final String COLUMNSLABEL ="Columns: ";
+    private static final String OKTEXT ="OK: ";
+    private static final String WINDOWTITLE = "Game Of Life";
 
     private final BorderPane rootBorder = new BorderPane();
     private final FlowPane flowPane = new FlowPane();
     private final TextField rowsField = new TextField();
     private final TextField columnsField = new TextField();
-    private final Label presentationLabel = new Label("Select your preferred dimensions for the Game Matrix: ");
-    private final Label rowsLabel = new Label("Rows: ");
-    private final Label columnsLabel = new Label("Columns: ");
-    private final Button dimensionsChosen = new Button("OK");
+    private final Label presentationLabel = new Label(PRESENTATION_STRING);
+    private final Label rowsLabel = new Label(ROWSLABEL);
+    private final Label columnsLabel = new Label(COLUMNSLABEL);
+    private final Button dimensionsChosen = new Button(OKTEXT);
 
     public static void main(String[] args) {
         launch(args);
@@ -33,9 +38,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         Scene scene = selectDimensionScene(primaryStage);
-        //Parent rootBorder = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        //Parent rootBorder = FXMLLoader.load(getClass().getResource("game.fxml"));
 
-        primaryStage.setTitle("GameOfLife");
+        primaryStage.setTitle(WINDOWTITLE);
         //primaryStage.setScene(new Scene(rootBorder));
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -62,7 +67,7 @@ public class Main extends Application {
         dimensionsChosen.prefWidthProperty().bind(rootBorder.widthProperty());
         dimensionsChosen.setOnAction( event ->  {
             try {
-                primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("sample.fxml"))));
+                primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("game.fxml"))));
             } catch (IOException e) {
                 e.printStackTrace();
             }
