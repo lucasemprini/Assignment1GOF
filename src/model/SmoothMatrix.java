@@ -6,9 +6,8 @@ import java.util.Random;
 
 public class SmoothMatrix implements Matrix {
 
-
-    private final int numRows;
-    private final int numColumns;
+    private int numRows;
+    private int numColumns;
 
     private final boolean[][] matrix;
 
@@ -72,6 +71,16 @@ public class SmoothMatrix implements Matrix {
     @Override
     public int getNumColumns() {
         return this.numColumns;
+    }
+
+    @Override
+    public void setNumRows(int numRows) {
+        this.numRows = numRows;
+    }
+
+    @Override
+    public void setNumColumns(int numColumns) {
+        this.numColumns = numColumns;
     }
 
     @Override
