@@ -99,9 +99,10 @@ public class SmoothMatrix implements Matrix {
     }
 
     @Override
-    public void update() {
-        for(int i = 0; i < numRows; i++) {
-            for(int j = 0; j < numColumns; j++) {
+    public void update(final int startRow, final int stopRow,
+                       final int startColumn, final int stopColumn) {
+        for(int i = startRow; i < stopRow; i++) {
+            for(int j = startColumn; j < stopColumn; j++) {
                 this.updateCell(i, j);
             }
         }
@@ -113,7 +114,8 @@ public class SmoothMatrix implements Matrix {
     }
 
     @Override
-    public void computeUpdate() {
+    public void computeUpdate(final int startRow, final int stopRow,
+                              final int startColumn, final int stopColumn) {
 
     }
 }

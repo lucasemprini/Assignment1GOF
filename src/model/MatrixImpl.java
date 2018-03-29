@@ -50,6 +50,15 @@ public class MatrixImpl implements Matrix {
     }
 
     /**
+     * Metodo per computare l'aggiornamento di una certa cella.
+     * @param x la coordinata x.
+     * @param y la coordinata y
+     */
+    private void computeCellUpdate(final int x, final int y) {
+        this.matrix[x][y].updateState();
+    }
+
+    /**
      * Metodo che restituisce il numero di vicini vivi per la cella specificata.
      * @param x la coordinata x della cella.
      * @param y la coordinata y della cella.
@@ -98,9 +107,10 @@ public class MatrixImpl implements Matrix {
     }
 
     @Override
-    public void update() {
-        for(int i = 0; i < numRows; i++) {
-            for(int j = 0; j < numColumns; j++) {
+    public void update(final int startRow, final int stopRow,
+                       final int startColumn, final int stopColumn) {
+        for(int i = startRow; i < stopRow; i++) {
+            for(int j = startColumn; j < stopColumn; j++) {
                 this.updateCell(i, j);
             }
         }
@@ -113,10 +123,11 @@ public class MatrixImpl implements Matrix {
 
 
     @Override
-    public void computeUpdate() {
-        for(int i = 0; i < numRows; i++) {
-            for(int j = 0; j < numColumns; j++) {
-                matrix[i][j].updateState();
+    public void computeUpdate(final int startRow, final int stopRow,
+                              final int startColumn, final int stopColumn) {
+        for(int i = startRow; i < stopRow; i++) {
+            for(int j = startColumn; j < stopColumn; j++) {
+                this.computeCellUpdate(i, j);
             }
         }
     }

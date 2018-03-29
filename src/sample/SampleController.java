@@ -105,8 +105,8 @@ public class SampleController implements Initializable {
         this.buttonStart.setOnAction( e -> {
             this.isRunning = true;
             //TODO FA MERDA.
-            this.myMatrix.update();
-            this.myMatrix.computeUpdate();
+            this.myMatrix.update(0, NUMROWS, 0, NUMCOLUMNS);
+            this.myMatrix.computeUpdate(0, NUMROWS, 0, NUMCOLUMNS);
             //DebugUtility.printMatrix(myMatrix, numGenerations);
             this.updateGridPane();
             this.numGenerations++;

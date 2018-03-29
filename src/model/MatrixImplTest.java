@@ -58,8 +58,8 @@ public class MatrixImplTest {
         Chrono cron = new Chrono();
         cron.start();
         for(int i = 0; i < 10; i++) {
-            this.matrix.update();
-            this.matrix.computeUpdate();
+            this.matrix.update(0, ROWS, 0, COLUMNS);
+            this.matrix.computeUpdate(0, ROWS, 0, COLUMNS);
             this.printGeneration(i);
         }
         cron.stop();

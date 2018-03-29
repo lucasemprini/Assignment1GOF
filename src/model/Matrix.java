@@ -44,8 +44,13 @@ public interface Matrix {
 
     /**
      * Metodo che internamente aggiorna la matrice di celle.
+     * @param startRow la riga di partenza.
+     * @param stopRow la riga di fine.
+     * @param startColumn la colonna di partenza.
+     * @param stopColumn la colonna di fine.
      */
-    public void update();
+    public void update(final int startRow, final int stopRow,
+                       final int startColumn, final int stopColumn);
 
     /**
      * Metodo che permette di restituire la cella alla posizione [x][y].
@@ -58,6 +63,11 @@ public interface Matrix {
 
     /**
      * Metodo che aggiorna effettivamente lo stato corrente di ogni cella.
+     * @param startRow la riga di partenza.
+     * @param stopRow la riga di fine.
+     * @param startColumn la colonna di partenza.
+     * @param stopColumn la colonna di fine.
      */
-    public void computeUpdate();
+    public void computeUpdate(final int startRow, final int stopRow,
+                              final int startColumn, final int stopColumn);
 }
