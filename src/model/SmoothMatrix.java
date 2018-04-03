@@ -29,12 +29,8 @@ public class SmoothMatrix implements Matrix {
         return isRow ? x >= 0 && x < numRows : x >= 0 && x < numColumns;
     }
 
-    /**
-     * Metodo per aggiornare una cella.
-     * @param x la coordinata x.
-     * @param y la coordinata y.
-     */
-    private void updateCell(int x, int y) {
+    @Override
+    public void updateCellAt(int x, int y) {
         this.matrix[x][y] = RulesUtility.nextStatus(
                 this.getNumNeighboursAlive(x, y),
                 this.matrix[x][y]);
@@ -94,16 +90,11 @@ public class SmoothMatrix implements Matrix {
     }
 
     @Override
-    public boolean isOver() {
-        return false;
-    }
-
-    @Override
     public void update(final int startRow, final int stopRow,
                        final int startColumn, final int stopColumn) {
         for(int i = startRow; i < stopRow; i++) {
             for(int j = startColumn; j < stopColumn; j++) {
-                this.updateCell(i, j);
+                this.updateCellAt(i, j);
             }
         }
     }

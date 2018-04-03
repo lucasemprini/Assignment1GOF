@@ -1,5 +1,7 @@
 package model.utility;
 
+import model.Matrix;
+
 /**
  * Utility-Class per modellare le regole del gioco.
  */
@@ -35,4 +37,22 @@ public final class RulesUtility {
             default: return false;
         }
     }
+
+    public static void computeLifeInGivenMatrix(final int startRow, final int stopRow,
+                                                final int startColumn, final int stopColumn,
+                                                final Matrix matrix) {
+        for(int i = startRow; i< stopRow; i++) {
+            for(int j = startColumn; j < stopColumn; j++) {
+                matrix.updateCellAt(i, j);
+            }
+        }
+    }
+
+    public static void updateLifeInGivenMatrix(final int startRow, final int stopRow,
+                                                final int startColumn, final int stopColumn,
+                                                final Matrix matrix) {
+        matrix.computeUpdate(startRow, stopRow, startColumn, stopColumn);
+
+    }
+
 }

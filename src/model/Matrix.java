@@ -36,12 +36,11 @@ public interface Matrix {
     public void generateRandomMatrix();
 
     /**
-     * Metodo che permette di capire se la matrice ha terminato le possibilità di
-     * progredire
-     * @return true se altre generazioni sono possibili, false altrimenti
+     * Metodo per aggiornare una cella.
+     * @param x la coordinata x.
+     * @param y la coordinata y.
      */
-    public boolean isOver();
-
+    public void updateCellAt(final int x, final int y);
     /**
      * Metodo che internamente aggiorna la matrice di celle.
      * @param startRow la riga di partenza.
