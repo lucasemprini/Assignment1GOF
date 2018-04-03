@@ -57,7 +57,6 @@ public interface Matrix {
      */
     public boolean getCellAt(final int x, final int y);
 
-
     /**
      * Metodo che aggiorna effettivamente lo stato corrente di ogni cella.
      * @param startRow la riga di partenza.

@@ -5,6 +5,7 @@ import controller.concurrency.Game;
 public class GameAgent extends Thread {
 
     private final Game game;
+    private int numGenerations = 0;
 
     private volatile boolean isPaused;
 
@@ -22,6 +23,8 @@ public class GameAgent extends Thread {
             } catch(Exception ex){
                 ex.printStackTrace();
             }
+            this.numGenerations++;
+            System.out.println(numGenerations);
         }
     }
 
@@ -32,5 +35,9 @@ public class GameAgent extends Thread {
     public void notifyStop(){
         super.interrupt();
         this.isPaused = true;
+    }
+
+    public int getNumGenerations() {
+        return numGenerations;
     }
 }

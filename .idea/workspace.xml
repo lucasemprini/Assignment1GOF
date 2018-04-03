@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2c4c3d7a-ed4a-4333-af0d-ace987f8d792" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/controller/GameAgent.java" afterPath="$PROJECT_DIR$/src/controller/GameAgent.java" />
+      <change beforePath="$PROJECT_DIR$/src/model/Matrix.java" afterPath="$PROJECT_DIR$/src/model/Matrix.java" />
       <change beforePath="$PROJECT_DIR$/src/view/LayoutController.java" afterPath="$PROJECT_DIR$/src/view/LayoutController.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -15,37 +17,36 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GameThread.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controller/concurrency/GameThread.java">
+      <file leaf-file-name="MatrixImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/MatrixImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="782">
-              <caret line="76" column="108" lean-forward="false" selection-start-line="76" selection-start-column="98" selection-end-line="76" selection-end-column="108" />
+            <state relative-caret-position="457">
+              <caret line="110" column="0" lean-forward="false" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#3257#3258#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RulesUtility.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/model/utility/RulesUtility.java">
+      <file leaf-file-name="CellImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/CellImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="58" column="46" lean-forward="false" selection-start-line="58" selection-start-column="46" selection-end-line="58" selection-end-column="46" />
+            <state relative-caret-position="187">
+              <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+              <folding>
+                <element signature="e#299#300#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MatrixEvent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/MatrixEvent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="38" lean-forward="true" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameAgent.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controller/GameAgent.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-              <folding>
-                <element signature="e#559#560#0" expanded="true" />
-                <element signature="e#591#592#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -53,8 +54,8 @@
       <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controller/concurrency/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+            <state relative-caret-position="187">
+              <caret line="69" column="7" lean-forward="true" selection-start-line="69" selection-start-column="7" selection-end-line="69" selection-end-column="7" />
               <folding>
                 <element signature="e#3719#3720#0" expanded="true" />
                 <element signature="e#3753#3754#0" expanded="true" />
@@ -63,16 +64,41 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="GameThread.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/controller/concurrency/GameThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="440">
+              <caret line="76" column="108" lean-forward="false" selection-start-line="76" selection-start-column="98" selection-end-line="76" selection-end-column="108" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MatrixUpdatedEvent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/model/MatrixUpdatedEvent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="17" column="9" lean-forward="true" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
+              <folding>
+                <element signature="e#143#144#0" expanded="true" />
+                <element signature="e#169#170#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="LayoutController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/view/LayoutController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="115" column="45" lean-forward="true" selection-start-line="115" selection-start-column="45" selection-end-line="115" selection-end-column="45" />
+            <state relative-caret-position="408">
+              <caret line="168" column="11" lean-forward="true" selection-start-line="168" selection-start-column="11" selection-end-line="168" selection-end-column="11" />
               <folding>
-                <element signature="e#5373#5374#0" expanded="true" />
-                <element signature="e#5408#5409#0" expanded="true" />
-                <element signature="e#9311#9312#0" expanded="true" />
-                <element signature="e#9391#9392#0" expanded="true" />
+                <element signature="e#5794#5795#0" expanded="true" />
+                <element signature="e#5829#5830#0" expanded="true" />
+                <element signature="e#9732#9733#0" expanded="true" />
+                <element signature="e#9812#9813#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -128,23 +154,23 @@
         <option value="$PROJECT_DIR$/src/sample/Main.java" />
         <option value="$PROJECT_DIR$/src/model/MatrixImplTest.java" />
         <option value="$PROJECT_DIR$/src/sample/SampleController.java" />
-        <option value="$PROJECT_DIR$/src/model/MatrixEvent.java" />
-        <option value="$PROJECT_DIR$/src/model/MatrixUpdatedEvent.java" />
         <option value="$PROJECT_DIR$/src/model/SemaphoreManager.java" />
         <option value="$PROJECT_DIR$/src/controller/SemaphoreManager.java" />
         <option value="$PROJECT_DIR$/src/controller/SemaphoreManagerImpl.java" />
         <option value="$PROJECT_DIR$/src/controller/concurrency/GameThread.java" />
         <option value="$PROJECT_DIR$/src/model/MatrixEventListener.java" />
         <option value="$PROJECT_DIR$/src/model/utility/RulesUtility.java" />
-        <option value="$PROJECT_DIR$/src/controller/concurrency/Game.java" />
         <option value="$PROJECT_DIR$/src/controller/Controller.java" />
-        <option value="$PROJECT_DIR$/src/controller/GameAgent.java" />
         <option value="$PROJECT_DIR$/src/view/game.fxml" />
         <option value="$PROJECT_DIR$/src/controller/StringUtilities.java" />
         <option value="$PROJECT_DIR$/src/controller/Main.java" />
+        <option value="$PROJECT_DIR$/src/model/SmoothMatrix.java" />
         <option value="$PROJECT_DIR$/src/model/MatrixImpl.java" />
         <option value="$PROJECT_DIR$/src/model/Matrix.java" />
-        <option value="$PROJECT_DIR$/src/model/SmoothMatrix.java" />
+        <option value="$PROJECT_DIR$/src/model/MatrixEvent.java" />
+        <option value="$PROJECT_DIR$/src/model/MatrixUpdatedEvent.java" />
+        <option value="$PROJECT_DIR$/src/controller/GameAgent.java" />
+        <option value="$PROJECT_DIR$/src/controller/concurrency/Game.java" />
         <option value="$PROJECT_DIR$/src/view/LayoutController.java" />
       </list>
     </option>
@@ -515,7 +541,7 @@
       <workItem from="1521986710567" duration="5648000" />
       <workItem from="1521992826588" duration="597000" />
       <workItem from="1522221207071" duration="666000" />
-      <workItem from="1522335466849" duration="25314000" />
+      <workItem from="1522335466849" duration="29539000" />
     </task>
     <task id="LOCAL-00001" summary="Progressi fatti: Scheletro GUI, parti del model">
       <created>1521746109242</created>
@@ -622,7 +648,14 @@
       <option name="project" value="LOCAL" />
       <updated>1522769041325</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Cercando di capire perchè non aggiorni la gui">
+      <created>1522773206445</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1522773206445</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -658,7 +691,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61589000" />
+    <option name="totallyTimeSpent" value="65814000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -672,7 +705,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32917318" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.49453977" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49453977" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -714,11 +747,12 @@
     <MESSAGE value="Gestendo la concorrenza" />
     <MESSAGE value="Progressi sulla GUI, cercando di passare i parametri" />
     <MESSAGE value="Progressi" />
-    <option name="LAST_COMMIT_MESSAGE" value="Progressi" />
+    <MESSAGE value="Cercando di capire perchè non aggiorni la gui" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cercando di capire perchè non aggiorni la gui" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -731,7 +765,7 @@
             <element signature="e#164#165#0" expanded="false" />
             <element signature="e#205#206#0" expanded="false" />
             <element signature="e#259#260#0" expanded="false" />
-            <element signature="e#299#300#0" expanded="false" />
+            <element signature="e#299#300#0" expanded="true" />
             <element signature="e#350#351#0" expanded="false" />
             <element signature="e#387#388#0" expanded="false" />
             <element signature="e#452#453#0" expanded="false" />
@@ -790,10 +824,10 @@
         <state relative-caret-position="1479">
           <caret line="87" column="5" lean-forward="false" selection-start-line="87" selection-start-column="5" selection-end-line="87" selection-end-column="5" />
           <folding>
-            <element signature="e#5373#5374#0" expanded="true" />
-            <element signature="e#5408#5409#0" expanded="true" />
-            <element signature="e#9311#9312#0" expanded="true" />
-            <element signature="e#9391#9392#0" expanded="true" />
+            <element signature="e#5794#5795#0" expanded="true" />
+            <element signature="e#5829#5830#0" expanded="true" />
+            <element signature="e#9732#9733#0" expanded="true" />
+            <element signature="e#9812#9813#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -815,7 +849,7 @@
             <element signature="e#164#165#0" expanded="false" />
             <element signature="e#205#206#0" expanded="false" />
             <element signature="e#259#260#0" expanded="false" />
-            <element signature="e#299#300#0" expanded="false" />
+            <element signature="e#299#300#0" expanded="true" />
             <element signature="e#350#351#0" expanded="false" />
             <element signature="e#387#388#0" expanded="false" />
             <element signature="e#452#453#0" expanded="false" />
@@ -842,10 +876,10 @@
         <state relative-caret-position="578">
           <caret line="38" column="51" lean-forward="false" selection-start-line="38" selection-start-column="51" selection-end-line="38" selection-end-column="51" />
           <folding>
-            <element signature="e#5373#5374#0" expanded="true" />
-            <element signature="e#5408#5409#0" expanded="true" />
-            <element signature="e#9311#9312#0" expanded="true" />
-            <element signature="e#9391#9392#0" expanded="true" />
+            <element signature="e#5794#5795#0" expanded="true" />
+            <element signature="e#5829#5830#0" expanded="true" />
+            <element signature="e#9732#9733#0" expanded="true" />
+            <element signature="e#9812#9813#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -894,7 +928,7 @@
             <element signature="e#164#165#0" expanded="false" />
             <element signature="e#205#206#0" expanded="false" />
             <element signature="e#259#260#0" expanded="false" />
-            <element signature="e#299#300#0" expanded="false" />
+            <element signature="e#299#300#0" expanded="true" />
             <element signature="e#350#351#0" expanded="false" />
             <element signature="e#387#388#0" expanded="false" />
             <element signature="e#452#453#0" expanded="false" />
@@ -955,25 +989,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml" />
     <entry file="file://$PROJECT_DIR$/src/sample/Sample.java" />
-    <entry file="file://$PROJECT_DIR$/src/model/CellImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="28" column="43" lean-forward="false" selection-start-line="28" selection-start-column="43" selection-end-line="28" selection-end-column="43" />
-          <folding>
-            <element signature="e#164#165#0" expanded="false" />
-            <element signature="e#205#206#0" expanded="false" />
-            <element signature="e#259#260#0" expanded="false" />
-            <element signature="e#299#300#0" expanded="false" />
-            <element signature="e#350#351#0" expanded="false" />
-            <element signature="e#387#388#0" expanded="false" />
-            <element signature="e#452#453#0" expanded="false" />
-            <element signature="e#494#495#0" expanded="false" />
-            <element signature="e#541#542#0" expanded="false" />
-            <element signature="e#591#592#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/utility/Chrono.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -995,16 +1010,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/sample.fxml" />
-    <entry file="file://$PROJECT_DIR$/src/view/GameCell.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="11" column="51" lean-forward="false" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/MatrixImplTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="491">
@@ -1012,32 +1017,6 @@
           <folding>
             <element signature="e#271#272#0" expanded="false" />
             <element signature="e#330#331#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/MatrixUpdatedEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="9" lean-forward="true" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
-          <folding>
-            <element signature="e#143#144#0" expanded="false" />
-            <element signature="e#169#170#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/SemaphoreManagerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="41" column="13" lean-forward="true" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
-          <folding>
-            <element signature="e#765#766#0" expanded="false" />
-            <element signature="e#812#813#0" expanded="false" />
-            <element signature="e#861#862#0" expanded="false" />
-            <element signature="e#907#908#0" expanded="false" />
-            <element signature="e#957#958#0" expanded="false" />
-            <element signature="e#1008#1009#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1066,14 +1045,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/MatrixEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="53" lean-forward="false" selection-start-line="3" selection-start-column="53" selection-end-line="3" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files (x86)/Java/jdk1.8.0_144/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="99">
@@ -1098,14 +1069,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/utility/RulesUtility.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="58" column="46" lean-forward="false" selection-start-line="58" selection-start-column="46" selection-end-line="58" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/SmoothMatrix.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
@@ -1125,32 +1088,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/Matrix.java">
+    <entry file="file://$PROJECT_DIR$/src/view/GameCell.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="33" column="15" lean-forward="false" selection-start-line="33" selection-start-column="15" selection-end-line="33" selection-end-column="15" />
+        <state relative-caret-position="153">
+          <caret line="11" column="51" lean-forward="false" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/MatrixImpl.java">
+    <entry file="file://$PROJECT_DIR$/src/model/utility/RulesUtility.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding>
-            <element signature="e#1409#1410#0" expanded="false" />
-            <element signature="e#1456#1457#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/concurrency/GameThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="76" column="108" lean-forward="false" selection-start-line="76" selection-start-column="98" selection-end-line="76" selection-end-column="108" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="287">
+          <caret line="58" column="46" lean-forward="false" selection-start-line="58" selection-start-column="46" selection-end-line="58" selection-end-column="46" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1165,21 +1115,77 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/SemaphoreManagerImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/GameAgent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="92">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding>
-            <element signature="e#559#560#0" expanded="true" />
-            <element signature="e#591#592#0" expanded="true" />
+            <element signature="e#678#679#0" expanded="true" />
+            <element signature="e#710#711#0" expanded="true" />
+            <element signature="e#842#843#0" expanded="true" />
+            <element signature="e#879#880#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/Matrix.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="57" column="55" lean-forward="false" selection-start-line="57" selection-start-column="55" selection-end-line="57" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/concurrency/GameThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="76" column="108" lean-forward="false" selection-start-line="76" selection-start-column="98" selection-end-line="76" selection-end-column="108" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/MatrixImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="457">
+          <caret line="110" column="0" lean-forward="false" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+          <folding>
+            <element signature="e#3257#3258#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/MatrixEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="38" lean-forward="true" selection-start-line="11" selection-start-column="38" selection-end-line="11" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/CellImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding>
+            <element signature="e#299#300#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/concurrency/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+        <state relative-caret-position="187">
+          <caret line="69" column="7" lean-forward="true" selection-start-line="69" selection-start-column="7" selection-end-line="69" selection-end-column="7" />
           <folding>
             <element signature="e#3719#3720#0" expanded="true" />
             <element signature="e#3753#3754#0" expanded="true" />
@@ -1187,15 +1193,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/MatrixUpdatedEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="9" lean-forward="true" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
+          <folding>
+            <element signature="e#143#144#0" expanded="true" />
+            <element signature="e#169#170#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/LayoutController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="115" column="45" lean-forward="true" selection-start-line="115" selection-start-column="45" selection-end-line="115" selection-end-column="45" />
+        <state relative-caret-position="408">
+          <caret line="168" column="11" lean-forward="true" selection-start-line="168" selection-start-column="11" selection-end-line="168" selection-end-column="11" />
           <folding>
-            <element signature="e#5373#5374#0" expanded="true" />
-            <element signature="e#5408#5409#0" expanded="true" />
-            <element signature="e#9311#9312#0" expanded="true" />
-            <element signature="e#9391#9392#0" expanded="true" />
+            <element signature="e#5794#5795#0" expanded="true" />
+            <element signature="e#5829#5830#0" expanded="true" />
+            <element signature="e#9732#9733#0" expanded="true" />
+            <element signature="e#9812#9813#0" expanded="true" />
           </folding>
         </state>
       </provider>

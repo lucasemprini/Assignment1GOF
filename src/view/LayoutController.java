@@ -2,6 +2,7 @@ package view;
 
 import controller.GameAgent;
 import controller.concurrency.Game;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -44,6 +45,7 @@ public class LayoutController {
     public BorderPane buttonPane;
 
     private boolean[][] myMatrix;
+    private boolean hasBeenStopped = false;
     private int cellSize = -1;
     private int numGenerations = 0;
     private GameAgent agent;
@@ -97,13 +99,14 @@ public class LayoutController {
         final Matrix matrix = game.getMatrix();
         final int numRows = matrix.getNumRows();
         final int numColumns = matrix.getNumColumns();
+        this.myMatrix = new boolean[numRows][numColumns];
 
         game.addListener(ev -> {
             final boolean[][] newMatrix = ev.matrixUpdate();
             for(int i = 0; i < numRows; i++) {
                 for(int j = 0; j < numColumns; j++) {
                     boolean newCellValue = newMatrix[i][j];
-                    if(matrix.getCellAt(i, j) != newCellValue) {
+                    if(myMatrix[i][j] != newCellValue) {
                         this.setCell(i, j, newCellValue);
                     }
                 }
@@ -149,9 +152,16 @@ public class LayoutController {
             agent.start();
             buttonStart.setDisable(true);
             buttonStop.setDisable(false);
+            Platform.runLater(() -> {
+                if(hasBeenStopped) {
+                    this.numGenerations += agent.getNumGenerations();
+                }
+                generationsLabel.setText(LABEL_INTRO + numGenerations);
+            });
         });
 
         this.buttonStop.setOnAction( e -> {
+            this.hasBeenStopped = true;
             agent.notifyStop();
             buttonStart.setDisable(false);
             buttonStop.setDisable(true);
