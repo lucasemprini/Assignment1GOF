@@ -1,5 +1,6 @@
 package controller;
 
+import com.sun.deploy.util.StringUtils;
 import controller.concurrency.Game;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -17,15 +18,13 @@ import javafx.stage.Stage;
 import view.LayoutController;
 
 import java.io.IOException;
-import java.util.Map;
-import java.util.Optional;
 
 public class Main extends Application {
 
     private static final String PRESENTATION_STRING ="Select your preferred dimensions for the Game Matrix: ";
     private static final String ROWSLABEL ="Rows: ";
     private static final String COLUMNSLABEL ="Columns: ";
-    private static final String OKTEXT ="OK: ";
+    private static final String OKTEXT ="OK";
     private static final String WINDOWTITLE = "Game Of Life";
     private static final String LAYOUT_PATH = "/view/game.fxml";
 
@@ -47,17 +46,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        Controller controller = null;
-        FXMLLoader loader = null;
+
         Scene scene = selectDimensionScene(primaryStage);
-        try {
-             controller = initModel(getNumberOfThreads(), TESTROWS, TESTCOLUMNS);
-             loader = initGui(primaryStage, scene);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        final LayoutController lc = loader != null ? loader.getController() : null;
-        // TODO lc.setModel(agent);
+        primaryStage.setTitle(WINDOWTITLE);
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 
@@ -81,15 +73,23 @@ public class Main extends Application {
     private void setUpOkButton(final Stage primaryStage) {
         dimensionsChosen.prefWidthProperty().bind(rootBorder.widthProperty());
         dimensionsChosen.setOnAction( event ->  {
-            final FXMLLoader loader = new FXMLLoader(getClass().getResource(LAYOUT_PATH));
-            try {
-                loader.load();
-            } catch (IOException e) {
-                e.printStackTrace();
+            if(StringUtilities.isStringNumeric(this.columnsField.getText()) &&
+                    StringUtilities.isStringNumeric(this.rowsField.getText())) {
+                final int numRows = Integer.parseInt(this.rowsField.getText());
+                final int numColumns = Integer.parseInt(this.rowsField.getText());
+
+                Game game;
+                FXMLLoader loader;
+
+                try {
+                    game = initGame(getNumberOfThreads(), numRows, numColumns);
+                    loader = initGui(primaryStage);
+                    final LayoutController lc = loader.getController();
+                    lc.setModel(game);
+                } catch (IOException | InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-            final LayoutController lc = loader.getController();
-            lc.setMatrixDimensions(Integer.parseInt(this.rowsField.getText()), Integer.parseInt(this.columnsField.getText()));
-            primaryStage.setScene(new Scene(lc.anchorPane));
         });
     }
 
@@ -130,33 +130,30 @@ public class Main extends Application {
     }
 
     /**
-     * Initializes the model of the application.
-     *
-     * @param threads the number of threads to use
-     * @param rows    the number of rows of the matrix
-     * @param columns the number of columns of the matrix
-     * @return the {@link Controller} thread, ready to be started
-     * @throws InterruptedException if the thread is interrupted
+     * Metodo che inizializza la classe Game.
+     * @param numThreads il numero dei Thread voluti.
+     * @param numRows    il numero delle righe.
+     * @param numColumns il numero delle colonne.
+     * @return il Game.
+     * @throws InterruptedException se il Thread viene interrotto.
      */
-    private Controller initModel(final int threads, final int rows, final int columns) throws InterruptedException {
-        // TODO test mode
+    private Game initGame(final int numThreads, final int numRows, final int numColumns) throws InterruptedException {
 
-        final Game m = new Game(threads, rows, columns); // TODO: java.lang.OutOfMemoryError: Java heap space
-        m.setupSemaphores();
-        return new Controller(m);
+        final Game game = new Game(numThreads, numRows, numColumns);
+        game.setupSemaphores();
+        return game;
     }
 
     /**
-     * Initializes the GUI of the application.
-     *
-     * @param primaryStage the JavaFX main Stage to initialize
-     * @param  selectDimensions la Scene iniziale di selezione delle dimensioni.
-     * @return the FXML loader
+     * Metodo per inizializzare la GUI dell'applicazione.
+     * @param primaryStage lo stage primario della GUI JavaFX.
+     * @return il FXMLLoader.
      */
-    private FXMLLoader initGui(final Stage primaryStage, final Scene selectDimensions) {
+    private FXMLLoader initGui(final Stage primaryStage) throws IOException {
         final FXMLLoader loader = new FXMLLoader(getClass().getResource(LAYOUT_PATH));
+        final Parent root = loader.load();
         primaryStage.setTitle(WINDOWTITLE);
-        primaryStage.setScene(selectDimensions);
+        primaryStage.setScene(new Scene(root));
         primaryStage.setOnCloseRequest(event -> {
             Platform.exit();
             System.exit(0);

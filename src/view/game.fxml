@@ -4,6 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.scene.canvas.Canvas?>
 <AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="525.0"
             xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2"
             fx:controller="view.LayoutController">
@@ -31,7 +32,7 @@
             <ScrollPane  AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
                          AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"
                          fx:id="scrollPane" fitToHeight="true" fitToWidth="true">
-                <GridPane fx:id="gameGrid"/>
+                <Canvas fx:id="canvas" id="canvas"/>
             </ScrollPane>
         </AnchorPane>
     </center>

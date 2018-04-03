@@ -38,6 +38,14 @@ public final class RulesUtility {
         }
     }
 
+    /**
+     * Metodo statico per effettuare la compute su una matrice data.
+     * @param startRow la riga da cui iniziare.
+     * @param stopRow la riga su cui finire.
+     * @param startColumn la colonna da cui iniziare.
+     * @param stopColumn la colonna su cui finire.
+     * @param matrix la matrice.
+     */
     public static void computeLifeInGivenMatrix(final int startRow, final int stopRow,
                                                 final int startColumn, final int stopColumn,
                                                 final Matrix matrix) {
@@ -47,7 +55,14 @@ public final class RulesUtility {
             }
         }
     }
-
+    /**
+     * Metodo statico per effettuare la update su una matrice data.
+     * @param startRow la riga da cui iniziare.
+     * @param stopRow la riga su cui finire.
+     * @param startColumn la colonna da cui iniziare.
+     * @param stopColumn la colonna su cui finire.
+     * @param matrix la matrice.
+     */
     public static void updateLifeInGivenMatrix(final int startRow, final int stopRow,
                                                 final int startColumn, final int stopColumn,
                                                 final Matrix matrix) {

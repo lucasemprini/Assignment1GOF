@@ -2,13 +2,13 @@ package controller;
 
 import controller.concurrency.Game;
 
-public class Controller extends Thread {
+public class GameAgent extends Thread {
 
     private final Game game;
 
     private volatile boolean isPaused;
 
-    public Controller(final Game game) {
+    public GameAgent(final Game game) {
         this.game = game;
     }
 
@@ -23,6 +23,10 @@ public class Controller extends Thread {
                 ex.printStackTrace();
             }
         }
+    }
+
+    public Game getGame() {
+        return this.game;
     }
 
     public void notifyStop(){

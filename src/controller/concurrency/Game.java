@@ -99,6 +99,10 @@ public class Game {
         this.threadsSetup();
     }
 
+    public Matrix getMatrix() {
+        return this.matrix;
+    }
+
     public void playGame() {
         try {
             this.chronometer.start();
@@ -128,7 +132,5 @@ public class Game {
             e.printStackTrace();
             System.exit(1);
         }
-
-
     }
 }
