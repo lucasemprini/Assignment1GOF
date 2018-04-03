@@ -16,8 +16,6 @@ import java.util.Optional;
 
 public class LayoutController {
 
-    private int numColumns;
-    private int numRows;
     private static final String LABEL_INTRO = "Generations: ";
 
 
@@ -47,7 +45,6 @@ public class LayoutController {
 
     private boolean[][] myMatrix;
     private int cellSize = -1;
-    private boolean isRunning = false;
     private int numGenerations = 0;
     private GameAgent agent;
 
@@ -86,23 +83,31 @@ public class LayoutController {
         gc.strokeRect(column, row, cellSize, cellSize);
     }
 
+    @FXML
+    public void initialize() {
+        this.buttonStop.setDisable(true);
+        this.setResizeOptions();
+        this.setScrollPane();
+        this.addListenersToButtons();
+        this.updateLabelGenerations();
+    }
+
     public void setModel(final Game game) {
         this.setAgent(new GameAgent(game));
         final Matrix matrix = game.getMatrix();
         final int numRows = matrix.getNumRows();
         final int numColumns = matrix.getNumColumns();
 
-        agent.getGame().addListener(ev -> {
+        game.addListener(ev -> {
             final boolean[][] newMatrix = ev.matrixUpdate();
             for(int i = 0; i < numRows; i++) {
                 for(int j = 0; j < numColumns; j++) {
-                    boolean newVal = newMatrix[i][j];
-                    if(myMatrix[i][j] != newVal) {
-                        setCell(i, j, newVal);
+                    boolean newCellValue = newMatrix[i][j];
+                    if(matrix.getCellAt(i, j) != newCellValue) {
+                        this.setCell(i, j, newCellValue);
                     }
                 }
             }
-
         });
         this.drawGrid(numRows, numColumns);
     }
@@ -112,16 +117,6 @@ public class LayoutController {
         fillCell(this.canvas.getGraphicsContext2D(), row * cellSize,
                 column * cellSize, this.cellSize,
                 isAlive ? ALIVE_COLOR : DEAD_COLOR);
-    }
-
-
-    @FXML
-    public void initialize() {
-        this.buttonStop.setDisable(true);
-        this.setResizeOptions();
-        this.setScrollPane();
-        this.addListenersToButtons();
-        this.updateLabelGenerations();
     }
 
     /**
@@ -157,7 +152,6 @@ public class LayoutController {
         });
 
         this.buttonStop.setOnAction( e -> {
-            this.isRunning = false;
             agent.notifyStop();
             buttonStart.setDisable(false);
             buttonStop.setDisable(true);
