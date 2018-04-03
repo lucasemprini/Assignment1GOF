@@ -1,4 +1,4 @@
-package sample;
+package view;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,16 +18,16 @@ import view.GameCell;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SampleController implements Initializable {
+public class LayoutController implements Initializable {
 
-    private static final int NUMCOLUMNS = 100;
-    private static final int NUMROWS = 100;
+    private int numColumns;
+    private int numRows;
     private static final int CELL_DIMENSION = 10;
     private static final String LABEL_INTRO = "Generations: ";
     private boolean isRunning = false;
     private int numGenerations = 0;
 
-    private final Matrix myMatrix;
+    private Matrix myMatrix;
 
     @FXML
     public ScrollPane scrollPane;
@@ -44,18 +44,19 @@ public class SampleController implements Initializable {
     @FXML
     public BorderPane buttonPane;
 
-    public SampleController() {
-        this.myMatrix = new MatrixImpl(NUMROWS, NUMCOLUMNS);
-        //TODO this.myMatrix = new SmoothMatrix(NUMROWS, NUMCOLUMNS);
+    public LayoutController() {
+        //TODO this.myMatrix = new SmoothMatrix(numRows, numColumns);
     }
 
-    public void setDimensions(final int numRows, final int numColumns) {
-        this.myMatrix.setNumRows(numRows);
-        this.myMatrix.setNumColumns(numColumns);
+    public void setMatrixDimensions(final int numRows, final int numColumns) {
+        this.numColumns = numColumns;
+        this.numRows = numRows;
+        this.myMatrix = new MatrixImpl(numRows, numColumns);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         this.setResizeOptions();
         this.addCellsToGridPane();
         this.setScrollPane();
@@ -105,8 +106,8 @@ public class SampleController implements Initializable {
         this.buttonStart.setOnAction( e -> {
             this.isRunning = true;
             //TODO FA MERDA.
-            this.myMatrix.update(0, NUMROWS, 0, NUMCOLUMNS);
-            this.myMatrix.computeUpdate(0, NUMROWS, 0, NUMCOLUMNS);
+            this.myMatrix.update(0, numRows, 0, numColumns);
+            this.myMatrix.computeUpdate(0, numRows, 0, numColumns);
             //DebugUtility.printMatrix(myMatrix, numGenerations);
             this.updateGridPane();
             this.numGenerations++;
@@ -123,8 +124,8 @@ public class SampleController implements Initializable {
      * Metodo INEFFICENTE, utile solo ai fini di test.
      */
     private void updateGridPane() {
-        for (int row = 0; row < NUMROWS; row++) {
-            for (int col = 0; col < NUMCOLUMNS; col++) {
+        for (int row = 0; row < numRows; row++) {
+            for (int col = 0; col < numColumns; col++) {
                 GameCell cell = new GameCell(CELL_DIMENSION, CELL_DIMENSION,
                         myMatrix.getCellAt(row, col));
                 gameGrid.add(cell, col, row);
