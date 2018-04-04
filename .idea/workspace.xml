@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2c4c3d7a-ed4a-4333-af0d-ace987f8d792" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/model/MatrixImplTest.java" afterPath="$PROJECT_DIR$/src/model/MatrixImplTest.java" />
+      <change beforePath="$PROJECT_DIR$/src/controller/GameAgent.java" afterPath="$PROJECT_DIR$/src/controller/GameAgent.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -61,11 +61,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DebugUtility.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DebugUtility.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/model/utility/DebugUtility.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="39" lean-forward="false" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
+            <state relative-caret-position="238">
+              <caret line="14" column="37" lean-forward="true" selection-start-line="7" selection-start-column="33" selection-end-line="14" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameThread.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/controller/concurrency/GameThread.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-221">
+              <caret line="31" column="5" lean-forward="false" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -81,16 +91,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameAgent.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="GameAgent.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/controller/GameAgent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="19" column="23" lean-forward="false" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+            <state relative-caret-position="408">
+              <caret line="35" column="10" lean-forward="true" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
               <folding>
                 <element signature="e#678#679#0" expanded="true" />
                 <element signature="e#710#711#0" expanded="true" />
-                <element signature="e#842#843#0" expanded="true" />
-                <element signature="e#879#880#0" expanded="true" />
+                <element signature="e#844#845#0" expanded="true" />
+                <element signature="e#881#882#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -146,7 +156,6 @@
         <option value="$PROJECT_DIR$/src/model/Matrix.java" />
         <option value="$PROJECT_DIR$/src/model/MatrixEvent.java" />
         <option value="$PROJECT_DIR$/src/model/MatrixUpdatedEvent.java" />
-        <option value="$PROJECT_DIR$/src/controller/GameAgent.java" />
         <option value="$PROJECT_DIR$/src/view/game.fxml" />
         <option value="$PROJECT_DIR$/src/view/LayoutController.java" />
         <option value="$PROJECT_DIR$/src/controller/concurrency/GameThread.java" />
@@ -159,6 +168,7 @@
         <option value="$PROJECT_DIR$/src/controller/GameAgentTest.java" />
         <option value="$PROJECT_DIR$/src/model/utility/DebugUtility.java" />
         <option value="$PROJECT_DIR$/src/model/MatrixImplTest.java" />
+        <option value="$PROJECT_DIR$/src/controller/GameAgent.java" />
       </list>
     </option>
   </component>
@@ -285,7 +295,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.MatrixImplTest.getNumRows">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -495,11 +505,11 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.MatrixImplTest.getNumRows" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.MatrixImplTest.lifeTest" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.GameAgentTest.runhardSingle" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.GameAgentTest.runhardMultiTen" />
-        <item index="4" class="java.lang.String" itemvalue="Application.Main" />
+        <item index="0" class="java.lang.String" itemvalue="Application.Main" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.MatrixImplTest.getNumRows" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.MatrixImplTest.lifeTest" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.GameAgentTest.runhardSingle" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.GameAgentTest.runhardMultiTen" />
       </list>
     </recent_temporary>
   </component>
@@ -534,7 +544,7 @@
       <workItem from="1522851391347" duration="1790000" />
       <workItem from="1522853241236" duration="683000" />
       <workItem from="1522854011865" duration="143000" />
-      <workItem from="1522854200165" duration="1972000" />
+      <workItem from="1522854200165" duration="2536000" />
     </task>
     <task id="LOCAL-00001" summary="Progressi fatti: Scheletro GUI, parti del model">
       <created>1521746109242</created>
@@ -683,13 +693,17 @@
       <option name="project" value="LOCAL" />
       <updated>1522856280163</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Migliorati i Test">
+      <created>1522856427050</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1522856427050</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="GameAgentTest_runhardMultiFive - 2018.04.04 at 17h 16m 47s.xml">
-      <configuration name="GameAgentTest.runhardMultiFive" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="GameAgentTest_runhardMultiTen - 2018.04.04 at 17h 23m 43s.xml">
       <configuration name="GameAgentTest.runhardMultiTen" configurationId="JUnit" />
     </history-entry>
@@ -711,6 +725,9 @@
     <history-entry file="MatrixImplTest_getNumRows - 2018.04.04 at 17h 40m 06s.xml">
       <configuration name="MatrixImplTest.getNumRows" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="MatrixImplTest_getNumRows - 2018.04.04 at 17h 41m 53s.xml">
+      <configuration name="MatrixImplTest.getNumRows" configurationId="JUnit" />
+    </history-entry>
     <history-entry file="MatrixImplTest_lifeTest - 2018.04.04 at 17h 38m 29s.xml">
       <configuration name="MatrixImplTest.lifeTest" configurationId="JUnit" />
     </history-entry>
@@ -719,7 +736,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="84178000" />
+    <option name="totallyTimeSpent" value="84742000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -781,7 +798,8 @@
     <MESSAGE value="Abbandonata la Label" />
     <MESSAGE value="Separata la logica della prima finestra dal Main" />
     <MESSAGE value="Progressi grossi con i Test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Progressi grossi con i Test" />
+    <MESSAGE value="Migliorati i Test" />
+    <option name="LAST_COMMIT_MESSAGE" value="Migliorati i Test" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1013,16 +1031,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/concurrency/GameThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="31" column="5" lean-forward="false" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/concurrency/Game.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="559">
@@ -1091,19 +1099,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/GameAgent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="19" column="23" lean-forward="false" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
-          <folding>
-            <element signature="e#678#679#0" expanded="true" />
-            <element signature="e#710#711#0" expanded="true" />
-            <element signature="e#842#843#0" expanded="true" />
-            <element signature="e#879#880#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GameOfLife.iml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -1167,9 +1162,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/utility/DebugUtility.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="39" lean-forward="false" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
+        <state relative-caret-position="238">
+          <caret line="14" column="37" lean-forward="true" selection-start-line="7" selection-start-column="33" selection-end-line="14" selection-end-column="37" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/concurrency/GameThread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-221">
+          <caret line="31" column="5" lean-forward="false" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/GameAgent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="35" column="10" lean-forward="true" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
+          <folding>
+            <element signature="e#678#679#0" expanded="true" />
+            <element signature="e#710#711#0" expanded="true" />
+            <element signature="e#844#845#0" expanded="true" />
+            <element signature="e#881#882#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

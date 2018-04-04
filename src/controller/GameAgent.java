@@ -33,7 +33,7 @@ public class GameAgent extends Thread {
     }
 
     public void notifyStop(){
-        super.interrupt();
+        //super.interrupt();
         this.isPaused = true;
     }
 
