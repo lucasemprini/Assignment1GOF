@@ -12,9 +12,9 @@ import javafx.scene.layout.FlowPane;
 public class InitialWindowLayoutController {
 
     private static final String PRESENTATION_STRING ="Select your preferred dimensions for the Game Matrix: ";
-    private static final String ROWSLABEL ="Rows: ";
-    private static final String COLUMNSLABEL ="Columns: ";
-    private static final String OKTEXT ="OK";
+    private static final String ROWS_LABEL ="Rows: ";
+    private static final String COLUMNS_LABEL ="Columns: ";
+    private static final String OK_TEXT ="OK";
 
 
     private final BorderPane rootBorder = new BorderPane();
@@ -23,9 +23,9 @@ public class InitialWindowLayoutController {
     private final TextField rowsField = new TextField();
     private final TextField columnsField = new TextField();
     private final Label presentationLabel = new Label(PRESENTATION_STRING);
-    private final Label rowsLabel = new Label(ROWSLABEL);
-    private final Label columnsLabel = new Label(COLUMNSLABEL);
-    private final Button dimensionsChosen = new Button(OKTEXT);
+    private final Label rowsLabel = new Label(ROWS_LABEL);
+    private final Label columnsLabel = new Label(COLUMNS_LABEL);
+    private final Button dimensionsChosen = new Button(OK_TEXT);
 
 
     /**

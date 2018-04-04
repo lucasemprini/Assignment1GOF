@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import model.utility.StringUtilities;
 import view.InitialWindowLayoutController;
 import view.LayoutController;
 
@@ -41,6 +42,12 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+    /**
+     * Metodo che aggiunge il Listener al Button della finestra iniziale.
+     * @param okButton il Bottone della finestra iniziale.
+     * @param initialWindow il controller della finestra iniziale.
+     * @param primaryStage il primaryStage dell'applicazione.
+     */
     private void addListenerToOkButton(final Button okButton, final InitialWindowLayoutController initialWindow,
                                        final Stage primaryStage) {
          okButton.setOnAction( event ->  {
@@ -64,7 +71,11 @@ public class Main extends Application {
          });
     }
 
-
+    /**
+     * Metodo che restituisce il numero di Thread su cui suddividere il Game in base
+     * al numero di processori della macchina su cui sta eseguendo l'applicazione.
+     * @return il numero di Thread, coerente con il numero di processori.
+     */
     private static int getNumberOfThreads() {
         return Runtime.getRuntime().availableProcessors() + 1;
     }
