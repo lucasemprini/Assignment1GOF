@@ -5,16 +5,14 @@
 <?import javafx.scene.layout.*?>
 
 <?import javafx.scene.canvas.Canvas?>
-<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="525.0"
+<AnchorPane fx:id="anchorPane" prefHeight="600.0" prefWidth="825.0"
             xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2"
             fx:controller="view.LayoutController">
-  <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+  <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
     <bottom>
       <HBox alignment="CENTER" BorderPane.alignment="CENTER">
         <BorderPane fx:id="buttonPane">
-          <center>
-            <Label fx:id="generationsLabel" maxWidth="224.0" text="Generation :" />
-          </center>
           <left>
             <Button fx:id="buttonStart" mnemonicParsing="false" prefHeight="33.0" prefWidth="92.0" text="START" />
           </left>

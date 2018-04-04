@@ -15,21 +15,15 @@ public class GameAgentTest {
     private final Chrono chronometer = new Chrono();
     private static final int ONE_THREAD = 1;
     private static final int FOUR_THREAD = 4;
+    private static final int FIVE_THREAD = 5;
     private static final int VERY_SIMPLE_DIM = 50;
     private static final int SIMPLE_DIM = 200;
     private static final int MEDIUM_DIM = 1000;
-    private static final int HARD_DIM = 5000;
+    private static final int HARD_DIM = 3000;
 
     private static final String TIME_STRING = "Time elapsed (in millis): ";
 
     private static final int NUM_GENERATION_TEST = 20;
-
-    private final Game singleThreadMediumGame = new Game(ONE_THREAD, MEDIUM_DIM, MEDIUM_DIM);
-    //private final Game singleThreadHardGame = new Game(ONE_THREAD, HARD_DIM, HARD_DIM);
-    private final Game multiThreadMediumGame = new Game(FOUR_THREAD, MEDIUM_DIM, MEDIUM_DIM);
-    //private final Game multiThreadHardGame = new Game(FOUR_THREAD, HARD_DIM, HARD_DIM);
-
-    private int totGenerations = 0;
 
     private void addListenerToGame(final Game game, final int dimension) {
 
@@ -49,19 +43,27 @@ public class GameAgentTest {
 
     private void runWhat(final int numThreads, final int dimension) {
         final Game game = new Game(numThreads, dimension, dimension);
+        long totalTime = 0;
+        try {
+            game.setInDebugMode(false);
+            game.setupSemaphores();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         this.addListenerToGame(game, dimension);
-        this.chronometer.start();
         for(int i = 0; i < NUM_GENERATION_TEST; i++) {
+            this.chronometer.start();
             game.playGame();
             try {
                 Thread.sleep(10);
             } catch(Exception ex){
                 ex.printStackTrace();
             }
-            DebugUtility.printOnlyGeneration(i);
+            totalTime += this.chronometer.getTime();
+            DebugUtility.printOnlyGeneration(i + 1, this.chronometer.getTime());
+            this.chronometer.stop();
         }
-        this.chronometer.stop();
-        System.out.println(TIME_STRING + this.chronometer.getTime());
+        System.out.println(TIME_STRING + totalTime);
     }
 
     @Test
@@ -71,7 +73,7 @@ public class GameAgentTest {
 
     @Test
     public void runSimpleMulti() {
-        this.runWhat(FOUR_THREAD, SIMPLE_DIM);
+        this.runWhat(FIVE_THREAD, SIMPLE_DIM);
     }
 
     @Test
@@ -81,7 +83,7 @@ public class GameAgentTest {
 
     @Test
     public void runMediumMulti() {
-        this.runWhat(FOUR_THREAD, MEDIUM_DIM);
+        this.runWhat(FIVE_THREAD, MEDIUM_DIM);
     }
 
     @Test
@@ -91,7 +93,7 @@ public class GameAgentTest {
 
     @Test
     public void runhardMulti() {
-        this.runWhat(FOUR_THREAD, HARD_DIM);
+        this.runWhat(FIVE_THREAD, HARD_DIM);
     }
 
     @Test

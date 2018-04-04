@@ -2,12 +2,10 @@ package view;
 
 import controller.GameAgent;
 import controller.concurrency.Game;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -16,9 +14,6 @@ import model.Matrix;
 import java.util.Optional;
 
 public class LayoutController {
-
-    private static final String LABEL_INTRO = "Generations: ";
-
 
     private static final int LINE_WIDTH = 1;
     private static final Color GRID_COLOR = Color.LIGHTGRAY;
@@ -38,16 +33,12 @@ public class LayoutController {
     @FXML
     public Button buttonStop;
     @FXML
-    public Label generationsLabel;
-    @FXML
     public AnchorPane anchorPane;
     @FXML
     public BorderPane buttonPane;
 
     private boolean[][] myMatrix;
-    private boolean hasBeenStopped = false;
     private int cellSize = -1;
-    private int numGenerations = 0;
     private GameAgent agent;
 
     /**
@@ -91,7 +82,6 @@ public class LayoutController {
         this.setResizeOptions();
         this.setScrollPane();
         this.addListenersToButtons();
-        this.updateLabelGenerations();
     }
 
     public void setModel(final Game game) {
@@ -127,9 +117,6 @@ public class LayoutController {
      */
     @FXML
     private void setResizeOptions() {
-        this.scrollPane.prefHeightProperty().bind(anchorPane.heightProperty());
-        this.scrollPane.prefWidthProperty().bind(anchorPane.widthProperty());
-        this.buttonPane.prefWidthProperty().bind(anchorPane.widthProperty());
     }
 
     /**
@@ -152,16 +139,9 @@ public class LayoutController {
             agent.start();
             buttonStart.setDisable(true);
             buttonStop.setDisable(false);
-            Platform.runLater(() -> {
-                if(hasBeenStopped) {
-                    this.numGenerations += agent.getNumGenerations();
-                }
-                generationsLabel.setText(LABEL_INTRO + numGenerations);
-            });
         });
 
         this.buttonStop.setOnAction( e -> {
-            this.hasBeenStopped = true;
             agent.notifyStop();
             buttonStart.setDisable(false);
             buttonStop.setDisable(true);
@@ -260,12 +240,5 @@ public class LayoutController {
             final Optional<Integer> checkDouble = suggestCellSize(dimension, minimumCellSize + 1);
             return checkDouble.isPresent() ? checkDouble : Optional.of(minimumCellSize);
         }
-    }
-
-    /**
-     * Metodo che aggiorna la label che tiene il conto delle generazioni trascorse.
-     */
-    private void updateLabelGenerations() {
-        this.generationsLabel.setText(LABEL_INTRO + this.numGenerations);
     }
 }

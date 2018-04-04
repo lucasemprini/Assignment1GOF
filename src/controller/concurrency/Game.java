@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-    private static final boolean DEBUG = true;
+    private boolean isInDebugMode = true;
     private final Chrono chronometer = new Chrono();
     private final int nCores;
     private Matrix matrix;
@@ -28,7 +28,7 @@ public class Game {
      */
     private void createThreadAndStart(final int id, final int startRow, final int stopRow,
                                       final int startColumn, final int stopColumn) {
-        if(DEBUG) {
+        if(isInDebugMode) {
             GameThread c = new GameThread(id, startRow, stopRow, startColumn, stopColumn,
                     this.matrix, this.computeSemaphore, this.updateSemaphore);
             c.start();
@@ -106,25 +106,25 @@ public class Game {
     public void playGame() {
         try {
             this.chronometer.start();
-            if(DEBUG) {
+            if(isInDebugMode) {
                 System.out.println("Manager rilascia tutte le compute");
             }
             computeSemaphore.releaseAllWorkers();
             computeSemaphore.waitAllManager();
-            if(DEBUG) {
+            if(isInDebugMode) {
                 System.out.println("Manager ha ricevuto tutti i segnali di compute");
             }
             computeSemaphore.waitAllWorkers();
-            if(DEBUG) {
+            if(isInDebugMode) {
                 System.out.println("Manager rilascia tutte le update");
             }
             updateSemaphore.releaseAllWorkers();
             updateSemaphore.waitAllManager();
-            if(DEBUG) {
+            if(isInDebugMode) {
                 System.out.println("Manager ha ricevuto tutti i segnali di update");
             }
             updateSemaphore.waitAllWorkers();
-            if(DEBUG) {
+            if(isInDebugMode) {
                 System.out.println(this.chronometer.getTime());
             }
             this.notifyMatrixUpdatedEvent();
@@ -132,5 +132,9 @@ public class Game {
             e.printStackTrace();
             System.exit(1);
         }
+    }
+
+    public void setInDebugMode(final boolean isDebug) {
+        this.isInDebugMode = isDebug;
     }
 }

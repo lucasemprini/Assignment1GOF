@@ -16,7 +16,7 @@ public final class DebugUtility {
         }
     }
 
-    public static void printOnlyGeneration(final int gen) {
-        System.out.println("Generation: " + gen);
+    public static void printOnlyGeneration(final int gen, final long time) {
+        System.out.println("Generation: " + gen + "     " + time + " millis.");
     }
 }
