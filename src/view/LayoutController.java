@@ -23,7 +23,6 @@ public class LayoutController {
     private static final int MIN_CELL_SIZE = LINE_WIDTH + 1;
     private static final int MAX_CELL_SIZE = 10;
 
-
     @FXML
     public ScrollPane scrollPane;
     @FXML
@@ -40,6 +39,91 @@ public class LayoutController {
     private boolean[][] myMatrix;
     private int cellSize = -1;
     private GameAgent agent;
+
+    @FXML
+    public void initialize() {
+        this.buttonStop.setDisable(true);
+        this.setScrollPane();
+        this.addListenersToButtons();
+    }
+
+    /**
+     * Metodo per settare il Game all'interno della view
+     * @param game il modello di Game passato dal Main.
+     */
+    public void setModel(final Game game) {
+        this.setAgent(new GameAgent(game));
+        final Matrix matrix = game.getMatrix();
+        final int numRows = matrix.getNumRows();
+        final int numColumns = matrix.getNumColumns();
+        this.myMatrix = new boolean[numRows][numColumns];
+
+        game.addListener(ev -> {
+            final boolean[][] newMatrix = ev.matrixUpdate();
+            for(int i = 0; i < numRows; i++) {
+                for(int j = 0; j < numColumns; j++) {
+                    boolean newCellValue = newMatrix[i][j];
+                    if(myMatrix[i][j] != newCellValue) {
+                        this.setCell(i, j, newCellValue);
+                    }
+                }
+            }
+        });
+        this.drawGrid(numRows, numColumns);
+    }
+
+    /**
+     * Metodo che setta con un valore specificato una cella della griglia di gioco
+     * nel Canvas.
+     * @param x la riga della cella.
+     * @param y la colonna della cella.
+     * @param newState lo stato da settare.
+     */
+    private void setCell(final int x, int y, boolean newState) {
+        this.myMatrix[x][y] = newState;
+        fillCell(this.canvas.getGraphicsContext2D(), x * cellSize,
+                y * cellSize, this.cellSize,
+                newState ? ALIVE_COLOR : DEAD_COLOR);
+    }
+
+    /**
+     * Metodo per settare le preferenze di layout sullo ScrollPane.
+     */
+    @FXML
+    private void setScrollPane() {
+        this.scrollPane.setContent(this.canvas);
+        this.scrollPane.setFitToWidth(true);
+        this.scrollPane.setFitToHeight(true);
+        this.scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+        this.scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+    }
+
+    /**
+     * Metodo che setta i listener ai bottoni e li abilita e disabilita
+     * a seconda di quale venga premuto.
+     */
+    private void addListenersToButtons() {
+        this.buttonStart.setOnAction( e -> {
+            agent.start();
+            buttonStart.setDisable(true);
+            buttonStop.setDisable(false);
+        });
+
+        this.buttonStop.setOnAction( e -> {
+            agent.notifyStop();
+            buttonStart.setDisable(false);
+            buttonStop.setDisable(true);
+            this.setAgent(new GameAgent(agent.getGame()));
+        });
+    }
+
+    /**
+     * Metodo per settare il campo agent.
+     * @param agent il GameAgent del gioco.
+     */
+    private void setAgent(final GameAgent agent) {
+        this.agent = agent;
+    }
 
     /**
      * Metodo che ritorna la dimensione in pixel dei separatori di linea.
@@ -69,169 +153,90 @@ public class LayoutController {
      * @param cellSize la dimensione della cella.
      * @param color il colore della cella.
      */
-    private static void fillCell(final GraphicsContext gc, final int row, final int column, final int cellSize, final Color color) {
+    private static void fillCell(final GraphicsContext gc, final int row, final int column,
+                                 final int cellSize, final Color color) {
         gc.setStroke(GRID_COLOR);
         gc.setFill(color);
         gc.fillRect(column, row, cellSize, cellSize);
         gc.strokeRect(column, row, cellSize, cellSize);
     }
 
-    @FXML
-    public void initialize() {
-        this.buttonStop.setDisable(true);
-        this.setResizeOptions();
-        this.setScrollPane();
-        this.addListenersToButtons();
-    }
-
-    public void setModel(final Game game) {
-        this.setAgent(new GameAgent(game));
-        final Matrix matrix = game.getMatrix();
-        final int numRows = matrix.getNumRows();
-        final int numColumns = matrix.getNumColumns();
-        this.myMatrix = new boolean[numRows][numColumns];
-
-        game.addListener(ev -> {
-            final boolean[][] newMatrix = ev.matrixUpdate();
-            for(int i = 0; i < numRows; i++) {
-                for(int j = 0; j < numColumns; j++) {
-                    boolean newCellValue = newMatrix[i][j];
-                    if(myMatrix[i][j] != newCellValue) {
-                        this.setCell(i, j, newCellValue);
-                    }
-                }
-            }
-        });
-        this.drawGrid(numRows, numColumns);
-    }
-
-    private void setCell(final int row, int column, boolean isAlive) {
-        this.myMatrix[row][column] = isAlive;
-        fillCell(this.canvas.getGraphicsContext2D(), row * cellSize,
-                column * cellSize, this.cellSize,
-                isAlive ? ALIVE_COLOR : DEAD_COLOR);
-    }
-
     /**
-     * Metodo per settare le preferenze di Resize dei vari pannelli.
+     * Disegna la griglia di gioco sul Canvas.
+     * @param numRows    il numero delle righe.
+     * @param numColumns il numero delle colonne.
+     * @throws IllegalArgumentException se la dimensione delle celle non risulta identificabile
+     * per il dato numero di righe e colonne.
      */
-    @FXML
-    private void setResizeOptions() {
-    }
+    private void drawGrid(final int numRows, final int numColumns) {
 
-    /**
-     * Metodo per settare le preferenze sullo ScrollPane
-     */
-    @FXML
-    private void setScrollPane() {
-        this.scrollPane.setContent(this.canvas);
-        this.scrollPane.setFitToWidth(true);
-        this.scrollPane.setFitToHeight(true);
-        this.scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-        this.scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
-    }
-
-    /**
-     * Metodo che setta i listener ai bottoni.
-     */
-    private void addListenersToButtons() {
-        this.buttonStart.setOnAction( e -> {
-            agent.start();
-            buttonStart.setDisable(true);
-            buttonStop.setDisable(false);
-        });
-
-        this.buttonStop.setOnAction( e -> {
-            agent.notifyStop();
-            buttonStart.setDisable(false);
-            buttonStop.setDisable(true);
-            this.setAgent(new GameAgent(agent.getGame()));
-        });
-     }
-
-     private void setAgent(final GameAgent agent) {
-        this.agent = agent;
-     }
-
-    /**
-     * Draws the grid on the {@link Canvas}.
-     * <p>
-     * If not previously set, it will set the cell size
-     *
-     * @param rowsNumber    the number of row to draw
-     * @param columnsNumber the number of columns to draw
-     * @throws IllegalArgumentException if cell size can't be defined for specified rows and/or columns numbers
-     */
-    private void drawGrid(final int rowsNumber, final int columnsNumber) {
+        //Se la dimensione delle celle non è ancora stata definita, chiama setCellSize
         if (this.cellSize == -1) {
-            setUpCellSize(rowsNumber, columnsNumber);
+            setCellSize(numRows, numColumns);
         }
 
         final GraphicsContext gc = this.canvas.getGraphicsContext2D();
 
         final double maxWidth = this.canvas.getWidth();
         final double maxHeight = this.canvas.getHeight();
-        gc.setLineWidth(1);
+        gc.setLineWidth(LINE_WIDTH);
         gc.setStroke(GRID_COLOR);
 
         gc.setFill(DEAD_COLOR);
         gc.fillRect(0, 0, maxWidth, maxHeight);
 
-        for (int r = 0; r * cellSize < maxHeight && r < rowsNumber; r++) {
+        for (int r = 0; r * cellSize < maxHeight && r < numRows; r++) {
             gc.strokeLine(0, r * cellSize, maxWidth, r * cellSize);
         }
 
-        for (int c = 0; c * cellSize < maxHeight && c < columnsNumber; c++) {
+        for (int c = 0; c * cellSize < maxHeight && c < numColumns; c++) {
             gc.strokeLine(c * cellSize, 0, c * cellSize, maxHeight);
         }
+
     }
 
     /**
-     * Setup cell size defining the maximum square side (range: ) that fits
-     * maximum canvas dimension of .
-     *
-     * @param rowsNumber    the number of rows to consider
-     * @param columnsNumber the number of columns to consider
-     * @throws IllegalArgumentException if cell size can't be defined for specified rows and/or columns numbers
+     * Metodo per settare la dimensione delle celle in base alla dimensione del canvas,
+     * il numero delle righe e il numero delle colonne.
+     * @param numRows    il numero delle righe.
+     * @param numColumns il numero delle colonne.
+     * @throws IllegalArgumentException se la dimensione delle celle non risulta identificabile
+     * per il dato numero di righe e colonne.
      */
-    private void setUpCellSize(final int rowsNumber, final int columnsNumber) {
+    private void setCellSize(final int numRows, final int numColumns) {
         final Optional<Integer> proposedCellSize;
 
-        if (rowsNumber > columnsNumber) {
-            proposedCellSize = suggestCellSize(rowsNumber);
+        if (numRows > numColumns) {
+            proposedCellSize = suggestCellSize(numRows);
         } else {
-            proposedCellSize = suggestCellSize(columnsNumber);
+            proposedCellSize = suggestCellSize(numColumns);
         }
 
         this.cellSize = proposedCellSize.orElseThrow(IllegalArgumentException::new);
 
-        this.canvas.setHeight(getPixelsForDimension(rowsNumber, cellSize));
-        this.canvas.setWidth(getPixelsForDimension(columnsNumber, cellSize));
+        this.canvas.setHeight(getPixelsForDimension(numRows, cellSize));
+        this.canvas.setWidth(getPixelsForDimension(numColumns, cellSize));
     }
     /**
-     * Checks if the dimension is acceptable, and returns an optional optimal cell size.
-     * <p>
-     * Minimum cell size is {@value MIN_CELL_SIZE} and maximum cell size is {@value MAX_CELL_SIZE}.
-     * The dimension is not acceptable if it will use more than {@value MAX_CANVAS_SIZE} pixels.
+     * Metodo collegato all'omonimo, ma con diversa signature: controlla se la dimensione proposta
+     * per le celle risulta accettabile o meno.
      *
-     * @param dimension the dimension to check
-     * @return {@link Optional#empty()} if the dimension is not acceptable,
-     * or an Optional of a cell size that will be acceptable
+     * @param dimension la dimensione della cella da controllare
+     * @return un Optional: vuoto se la dimensione non è accettabile, altrimenti
+     * contenente il valore della dimensione suggerita
      */
     private Optional<Integer> suggestCellSize(final int dimension) {
         return this.suggestCellSize(dimension, MIN_CELL_SIZE);
     }
 
     /**
-     * Checks if the dimension is acceptable, and returns an optional better cell size.
-     * <p>
-     * Maximum cell size is {@value MAX_CELL_SIZE}.
-     * The dimension is not acceptable if it will use more than {@value MAX_CANVAS_SIZE} pixels.
-     *
-     * @param dimension       the dimension to check
-     * @param minimumCellSize the proposed cell size
-     * @return {@link Optional#empty()} if the dimension is not acceptable,
-     * or an Optional of a bigger cell size that will be acceptable
+     * Metodo che suggerisce una dimensione accettabile per una cella: la dimensione massima
+     * è {@value MAX_CELL_SIZE}. La dimensione non verrà accettata se sarà maggiore del
+     * massimo valore in pixel del Canvas.
+     * @param dimension la dimensione da controllare.
+     * @param minimumCellSize la dimensione della cella proposta.
+     * @return un Optional: vuoto se la dimensione non è accettabile, altrimenti
+     * contenente il valore della dimensione suggerita.
      */
     private Optional<Integer> suggestCellSize(final int dimension, final int minimumCellSize) {
         if (getPixelsForDimension(dimension, minimumCellSize) > MAX_CANVAS_SIZE || minimumCellSize > MAX_CELL_SIZE) {

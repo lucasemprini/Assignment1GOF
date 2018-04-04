@@ -99,10 +99,9 @@ public class Game {
         this.threadsSetup();
     }
 
-    public Matrix getMatrix() {
-        return this.matrix;
-    }
-
+    /**
+     * Metodo che gestisce l'alternanza dei semafori all'interno del gioco.
+     */
     public void playGame() {
         try {
             this.chronometer.start();
@@ -134,7 +133,20 @@ public class Game {
         }
     }
 
+    /**
+     * Metodo pubblico che mi permette di settare a piacimento le stampe
+     * del metodo run().
+     * @param isDebug il valore da attribuire alla variabile che controlla il debug.
+     */
     public void setInDebugMode(final boolean isDebug) {
         this.isInDebugMode = isDebug;
+    }
+
+    /**
+     * Metodo pubblico che ritorna la Matrix usata da questo Game.
+     * @return la Matrix utilizzata.
+     */
+    public Matrix getMatrix() {
+        return this.matrix;
     }
 }

@@ -1,14 +1,9 @@
 package controller;
 
 import controller.concurrency.Game;
-import model.Matrix;
 import model.utility.Chrono;
 import model.utility.DebugUtility;
 import org.junit.Test;
-
-import javax.jws.Oneway;
-
-import static org.junit.Assert.*;
 
 public class GameAgentTest {
 
@@ -16,17 +11,21 @@ public class GameAgentTest {
     private static final int ONE_THREAD = 1;
     private static final int FOUR_THREAD = 4;
     private static final int FIVE_THREAD = 5;
-    private static final int VERY_SIMPLE_DIM = 50;
     private static final int SIMPLE_DIM = 200;
     private static final int MEDIUM_DIM = 1000;
-    private static final int HARD_DIM = 3000;
+    private static final int NOT_SO_HARD_DIM = 3000;
+    private static final int HARD_DIM = 5000;
 
     private static final String TIME_STRING = "Time elapsed (in millis): ";
 
     private static final int NUM_GENERATION_TEST = 20;
 
+    /**
+     * Metodo per aggiungere Listeners al Model di Game
+     * @param game il Game model
+     * @param dimension la dimensione della matrice.
+     */
     private void addListenerToGame(final Game game, final int dimension) {
-
         boolean[][] myMatrix = new boolean[dimension][dimension];
         game.addListener(ev -> {
             final boolean[][] newMatrix = ev.matrixUpdate();
@@ -41,6 +40,13 @@ public class GameAgentTest {
         });
     }
 
+    /**
+     * Metodo utile per capire quale tipo di game lanciare: inizializza il Game,
+     * lo lancia facendo stampe in standard output che monitorano il tempo
+     * trascorso per ogni generazione e il tempo totale dopo le 20 generazioni.
+     * @param numThreads il numero di Thread con cui lanciare il Game.
+     * @param dimension la dimensione della matrice di quel Game.
+     */
     private void runWhat(final int numThreads, final int dimension) {
         final Game game = new Game(numThreads, dimension, dimension);
         long totalTime = 0;
@@ -72,7 +78,12 @@ public class GameAgentTest {
     }
 
     @Test
-    public void runSimpleMulti() {
+    public void runSimpleMultiFour() {
+        this.runWhat(FOUR_THREAD, SIMPLE_DIM);
+    }
+
+    @Test
+    public void runSimpleMultiFive() {
         this.runWhat(FIVE_THREAD, SIMPLE_DIM);
     }
 
@@ -82,8 +93,27 @@ public class GameAgentTest {
     }
 
     @Test
-    public void runMediumMulti() {
+    public void runMediumMultiFour() {
+        this.runWhat(FOUR_THREAD, SIMPLE_DIM);
+    }
+
+    @Test
+    public void runMediumMultiFive() {
         this.runWhat(FIVE_THREAD, MEDIUM_DIM);
+    }
+    @Test
+    public void runNotSoHardSingle() {
+        this.runWhat(ONE_THREAD, NOT_SO_HARD_DIM);
+    }
+
+    @Test
+    public void runNotSoHardMultiFour() {
+        this.runWhat(FOUR_THREAD, SIMPLE_DIM);
+    }
+
+    @Test
+    public void runNotSoHardMultiFive() {
+        this.runWhat(FIVE_THREAD, NOT_SO_HARD_DIM);
     }
 
     @Test
@@ -92,7 +122,12 @@ public class GameAgentTest {
     }
 
     @Test
-    public void runhardMulti() {
+    public void runHardMultiFour() {
+        this.runWhat(FOUR_THREAD, SIMPLE_DIM);
+    }
+
+    @Test
+    public void runhardMultiFive() {
         this.runWhat(FIVE_THREAD, HARD_DIM);
     }
 
