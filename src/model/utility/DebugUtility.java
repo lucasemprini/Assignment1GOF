@@ -15,4 +15,8 @@ public final class DebugUtility {
             System.out.println("\n");
         }
     }
+
+    public static void printOnlyGeneration(final int gen) {
+        System.out.println("Generation: " + gen);
+    }
 }
