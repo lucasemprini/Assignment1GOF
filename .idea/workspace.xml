@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2c4c3d7a-ed4a-4333-af0d-ace987f8d792" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/controller/GameAgentTest.java" afterPath="$PROJECT_DIR$/src/controller/GameAgentTest.java" />
-      <change beforePath="$PROJECT_DIR$/src/controller/Main.java" afterPath="$PROJECT_DIR$/src/controller/Main.java" />
-      <change beforePath="$PROJECT_DIR$/src/controller/StringUtilities.java" afterPath="$PROJECT_DIR$/src/model/utility/StringUtilities.java" />
-      <change beforePath="$PROJECT_DIR$/src/model/utility/DebugUtility.java" afterPath="$PROJECT_DIR$/src/model/utility/DebugUtility.java" />
-      <change beforePath="$PROJECT_DIR$/src/view/InitialWindowLayoutController.java" afterPath="$PROJECT_DIR$/src/view/InitialWindowLayoutController.java" />
+      <change beforePath="$PROJECT_DIR$/src/model/MatrixImplTest.java" afterPath="$PROJECT_DIR$/src/model/MatrixImplTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -139,7 +135,6 @@
         <option value="$PROJECT_DIR$/src/sample/sample.fxml" />
         <option value="$PROJECT_DIR$/src/view/GameCell.java" />
         <option value="$PROJECT_DIR$/src/sample/Main.java" />
-        <option value="$PROJECT_DIR$/src/model/MatrixImplTest.java" />
         <option value="$PROJECT_DIR$/src/sample/SampleController.java" />
         <option value="$PROJECT_DIR$/src/model/SemaphoreManager.java" />
         <option value="$PROJECT_DIR$/src/controller/SemaphoreManager.java" />
@@ -163,6 +158,7 @@
         <option value="$PROJECT_DIR$/src/controller/StringUtilities.java" />
         <option value="$PROJECT_DIR$/src/controller/GameAgentTest.java" />
         <option value="$PROJECT_DIR$/src/model/utility/DebugUtility.java" />
+        <option value="$PROJECT_DIR$/src/model/MatrixImplTest.java" />
       </list>
     </option>
   </component>
@@ -289,7 +285,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.GameAgentTest.runhardSingle">
+  <component name="RunManager" selected="JUnit.MatrixImplTest.getNumRows">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -330,56 +326,6 @@
       <module name="" />
       <envs />
     </configuration>
-    <configuration name="GameAgentTest.runNotSoHardMultiFive" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="model.utility.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="GameOfLife" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="controller" />
-      <option name="MAIN_CLASS_NAME" value="controller.GameAgentTest" />
-      <option name="METHOD_NAME" value="runNotSoHardMultiFive" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-    </configuration>
-    <configuration name="GameAgentTest.runhardMultiFive" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="model.utility.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="GameOfLife" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="controller" />
-      <option name="MAIN_CLASS_NAME" value="controller.GameAgentTest" />
-      <option name="METHOD_NAME" value="runhardMultiFive" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-    </configuration>
     <configuration name="GameAgentTest.runhardMultiTen" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -418,6 +364,56 @@
       <option name="PACKAGE_NAME" value="controller" />
       <option name="MAIN_CLASS_NAME" value="controller.GameAgentTest" />
       <option name="METHOD_NAME" value="runhardSingle" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration name="MatrixImplTest.getNumRows" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="GameOfLife" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="model" />
+      <option name="MAIN_CLASS_NAME" value="model.MatrixImplTest" />
+      <option name="METHOD_NAME" value="getNumRows" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration name="MatrixImplTest.lifeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="GameOfLife" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="model" />
+      <option name="MAIN_CLASS_NAME" value="model.MatrixImplTest" />
+      <option name="METHOD_NAME" value="lifeTest" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -492,18 +488,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Application.Main" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.GameAgentTest.runhardMultiFive" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.GameAgentTest.runNotSoHardMultiFive" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.GameAgentTest.runhardMultiTen" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.GameAgentTest.runhardSingle" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.GameAgentTest.runhardMultiTen" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.GameAgentTest.runhardSingle" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.MatrixImplTest.lifeTest" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.MatrixImplTest.getNumRows" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.GameAgentTest.runhardSingle" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.GameAgentTest.runhardMultiTen" />
-        <item index="2" class="java.lang.String" itemvalue="Application.Main" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.GameAgentTest.runhardMultiFive" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.GameAgentTest.runNotSoHardMultiFive" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.MatrixImplTest.getNumRows" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.MatrixImplTest.lifeTest" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.GameAgentTest.runhardSingle" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.GameAgentTest.runhardMultiTen" />
+        <item index="4" class="java.lang.String" itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -538,7 +534,7 @@
       <workItem from="1522851391347" duration="1790000" />
       <workItem from="1522853241236" duration="683000" />
       <workItem from="1522854011865" duration="143000" />
-      <workItem from="1522854200165" duration="1819000" />
+      <workItem from="1522854200165" duration="1972000" />
     </task>
     <task id="LOCAL-00001" summary="Progressi fatti: Scheletro GUI, parti del model">
       <created>1521746109242</created>
@@ -680,24 +676,22 @@
       <option name="project" value="LOCAL" />
       <updated>1522854400914</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Progressi grossi con i Test">
+      <created>1522856280163</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1522856280163</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="GameAgentTest_runNotSoHardMultiFive - 2018.04.04 at 17h 14m 43s.xml">
-      <configuration name="GameAgentTest.runNotSoHardMultiFive" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="GameAgentTest_runhardMultiFive - 2018.04.04 at 17h 15m 21s.xml">
-      <configuration name="GameAgentTest.runhardMultiFive" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="GameAgentTest_runhardMultiFive - 2018.04.04 at 17h 16m 47s.xml">
       <configuration name="GameAgentTest.runhardMultiFive" configurationId="JUnit" />
     </history-entry>
     <history-entry file="GameAgentTest_runhardMultiTen - 2018.04.04 at 17h 23m 43s.xml">
       <configuration name="GameAgentTest.runhardMultiTen" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="GameAgentTest_runhardSingle - 2018.04.04 at 13h 07m 06s.xml">
-      <configuration name="GameAgentTest.runhardSingle" configurationId="JUnit" />
     </history-entry>
     <history-entry file="GameAgentTest_runhardSingle - 2018.04.04 at 17h 24m 18s.xml">
       <configuration name="GameAgentTest.runhardSingle" configurationId="JUnit" />
@@ -714,9 +708,18 @@
     <history-entry file="GameAgentTest_runhardSingle - 2018.04.04 at 17h 34m 27s.xml">
       <configuration name="GameAgentTest.runhardSingle" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="MatrixImplTest_getNumRows - 2018.04.04 at 17h 40m 06s.xml">
+      <configuration name="MatrixImplTest.getNumRows" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MatrixImplTest_lifeTest - 2018.04.04 at 17h 38m 29s.xml">
+      <configuration name="MatrixImplTest.lifeTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MatrixImplTest_lifeTest - 2018.04.04 at 17h 39m 15s.xml">
+      <configuration name="MatrixImplTest.lifeTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="84025000" />
+    <option name="totallyTimeSpent" value="84178000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -777,7 +780,8 @@
     <MESSAGE value="Eseguendo Tests" />
     <MESSAGE value="Abbandonata la Label" />
     <MESSAGE value="Separata la logica della prima finestra dal Main" />
-    <option name="LAST_COMMIT_MESSAGE" value="Separata la logica della prima finestra dal Main" />
+    <MESSAGE value="Progressi grossi con i Test" />
+    <option name="LAST_COMMIT_MESSAGE" value="Progressi grossi con i Test" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1108,14 +1112,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/MatrixImplTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1054">
-          <caret line="67" column="1" lean-forward="true" selection-start-line="67" selection-start-column="1" selection-end-line="67" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
@@ -1158,6 +1154,14 @@
             <element signature="e#4150#4151#0" expanded="true" />
             <element signature="e#4200#4201#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/MatrixImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="94">
+          <caret line="16" column="5" lean-forward="false" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>

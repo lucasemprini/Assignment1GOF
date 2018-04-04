@@ -1,6 +1,7 @@
 package model;
 
 import model.utility.Chrono;
+import model.utility.DebugUtility;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -15,27 +16,17 @@ public class MatrixImplTest {
         this.matrix = new MatrixImpl(ROWS, COLUMNS);
     }
 
-    private void printGeneration(final int generation) {
-        System.out.println("Generation: " + generation);
-        for(int i = 0; i < ROWS; i++) {
-            for(int j = 0; j < COLUMNS; j++) {
-                System.out.print(this.matrix.getCellAt(i, j) + " ");
-            }
-            System.out.println("\n");
-        }
-    }
-
     @Test
     public void getNumRows() {
         this.setup();
-        this.printGeneration(0);
+        DebugUtility.printMatrix(matrix, 0);
         assertEquals(this.matrix.getNumRows(), ROWS);
     }
 
     @Test
     public void getNumColumns() {
         this.setup();
-        this.printGeneration(0);
+        DebugUtility.printMatrix(matrix, 0);
         assertEquals(this.matrix.getNumColumns(), COLUMNS);
     }
 
@@ -60,7 +51,7 @@ public class MatrixImplTest {
         for(int i = 0; i < 10; i++) {
             this.matrix.update(0, ROWS, 0, COLUMNS);
             this.matrix.computeUpdate(0, ROWS, 0, COLUMNS);
-            this.printGeneration(i);
+            DebugUtility.printMatrix(matrix, i);
         }
         cron.stop();
         System.out.println("Time elapsed: "+cron.getTime()+" ms.");
