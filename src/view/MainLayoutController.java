@@ -13,7 +13,7 @@ import model.Matrix;
 
 import java.util.Optional;
 
-public class LayoutController {
+public class MainLayoutController {
 
     private static final int LINE_WIDTH = 1;
     private static final Color GRID_COLOR = Color.LIGHTGRAY;

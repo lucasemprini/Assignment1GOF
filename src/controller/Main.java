@@ -10,7 +10,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import model.utility.StringUtilities;
 import view.InitialWindowLayoutController;
-import view.LayoutController;
+import view.MainLayoutController;
 
 import java.io.IOException;
 
@@ -62,7 +62,7 @@ public class Main extends Application {
                  try {
                      game = initGame(getNumberOfThreads(), numRows, numColumns);
                      loader = initGui(primaryStage);
-                     final LayoutController lc = loader.getController();
+                     final MainLayoutController lc = loader.getController();
                      lc.setModel(game);
                  } catch (IOException | InterruptedException e) {
                      e.printStackTrace();
