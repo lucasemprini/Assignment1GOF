@@ -18,6 +18,8 @@ public class GameAgentTest {
     private static final int NOT_SO_HARD_DIM = 3000;
     private static final int HARD_DIM = 5000;
 
+    private long aliveCells = 0;
+
     private static final int NUM_GENERATION_TEST = 20;
 
     private static final String TIME_STRING = "Time elapsed (in millis): ";
@@ -36,6 +38,9 @@ public class GameAgentTest {
                     boolean newCellValue = newMatrix[i][j];
                     if(myMatrix[i][j] != newCellValue) {
                         myMatrix[i][j] = newCellValue;
+                        if(this.aliveCells != ev.getLiveCells()) {
+                            this.aliveCells = ev.getLiveCells();
+                        }
                     }
                 }
             }
@@ -70,7 +75,7 @@ public class GameAgentTest {
                 ex.printStackTrace();
             }
             totalTime += this.chronometer.getTime();
-            DebugUtility.printOnlyGeneration(i + 1, this.chronometer.getTime());
+            DebugUtility.printOnlyGeneration(i + 1, this.chronometer.getTime(), this.aliveCells);
             this.chronometer.stop();
         }
         System.out.println(TIME_STRING + totalTime);
@@ -99,7 +104,7 @@ public class GameAgentTest {
     }
     @Test
     public void runMediumMultiFour() {
-        this.runWhat(FOUR_THREAD, SIMPLE_DIM);
+        this.runWhat(FOUR_THREAD, MEDIUM_DIM);
     }
     @Test
     public void runMediumMultiFive() {
@@ -116,7 +121,7 @@ public class GameAgentTest {
     }
     @Test
     public void runNotSoHardMultiFour() {
-        this.runWhat(FOUR_THREAD, SIMPLE_DIM);
+        this.runWhat(FOUR_THREAD, NOT_SO_HARD_DIM);
     }
     @Test
     public void runNotSoHardMultiFive() {
@@ -133,7 +138,7 @@ public class GameAgentTest {
     }
     @Test
     public void runHardMultiFour() {
-        this.runWhat(FOUR_THREAD, SIMPLE_DIM);
+        this.runWhat(FOUR_THREAD, HARD_DIM);
     }
     @Test
     public void runhardMultiFive() {

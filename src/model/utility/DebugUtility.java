@@ -40,8 +40,11 @@ public final class DebugUtility {
      * Metodo di debug che stampa una Stringa dati i parametri.
      * @param gen il numero di generazioni trascorse dall'inizio del gioco.
      * @param time il tempo trascorso dato dalla classe Chrono.
+     * @param aliveCells le celle correntemente vive in quella generazione.
      */
-    public static void printOnlyGeneration(final int gen, final long time) {
-        System.out.println("Generation: " + gen + "     " + time + " millis.");
+    public static void printOnlyGeneration(final int gen, final long time, final long aliveCells) {
+        System.out.println("Generation: " + gen +
+                " with " + aliveCells + " alive cells." +
+                "     " + time + " millis. ");
     }
 }

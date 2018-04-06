@@ -2,10 +2,12 @@ package view;
 
 import controller.GameAgent;
 import controller.concurrency.Game;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -23,21 +25,19 @@ public class MainLayoutController {
     private static final int MIN_CELL_SIZE = LINE_WIDTH + 1;
     private static final int MAX_CELL_SIZE = 10;
 
-    @FXML
+    private static final String LABEL_LIVE_CELLS = "    Live Cells: ";
+
     public ScrollPane scrollPane;
-    @FXML
     public Canvas canvas;
-    @FXML
     public Button buttonStart;
-    @FXML
     public Button buttonStop;
-    @FXML
     public AnchorPane anchorPane;
-    @FXML
     public BorderPane buttonPane;
+    public Label labelLiveCells;
 
     private boolean[][] myMatrix;
     private int cellSize = -1;
+    private long aliveCells = 0;
     private GameAgent agent;
 
     @FXML
@@ -68,6 +68,7 @@ public class MainLayoutController {
                     }
                 }
             }
+            this.setLabelLiveCells(ev.getLiveCells());
         });
         this.drawGrid(numRows, numColumns);
     }
@@ -244,6 +245,17 @@ public class MainLayoutController {
         } else {
             final Optional<Integer> checkDouble = suggestCellSize(dimension, minimumCellSize + 1);
             return checkDouble.isPresent() ? checkDouble : Optional.of(minimumCellSize);
+        }
+    }
+
+    /**
+     * Metodo che setta la Label che indica il numero di celle vive.
+     * @param liveCells il numero di celle vive.
+     */
+    private void setLabelLiveCells(final long liveCells) {
+        if(aliveCells != liveCells) {
+            this.aliveCells = liveCells;
+            Platform.runLater(() -> this.labelLiveCells.setText(LABEL_LIVE_CELLS + liveCells));
         }
     }
 }

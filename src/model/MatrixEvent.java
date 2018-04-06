@@ -10,4 +10,10 @@ public interface MatrixEvent {
      * @return la matrice aggiornata
      */
     public boolean[][] matrixUpdate();
+
+    /**
+     * Metodo che ritorna il numero di celle vive ad ogni update della matrice.
+     * @return il numero di celle in stato ALIVE nella matrice.
+     */
+    public long getLiveCells();
 }

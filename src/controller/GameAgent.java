@@ -19,7 +19,7 @@ public class GameAgent extends Thread {
         while (! this.isPaused){
             this.game.playGame();
             try {
-                Thread.sleep(10);
+                Thread.sleep(50);
             } catch(Exception ex){
                 ex.printStackTrace();
             }
