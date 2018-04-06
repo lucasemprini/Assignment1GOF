@@ -13,7 +13,7 @@ public interface SemaphoreManager {
     public void waitForWorker() throws InterruptedException;
 
     /**
-     * Metodo per rilasciare un manager.
+     * Metodo per rilasciare il manager.
      */
     public void releaseManager();
 

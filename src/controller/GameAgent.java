@@ -25,7 +25,7 @@ public class GameAgent extends Thread {
                 ex.printStackTrace();
             }
             this.numGenerations++;
-            System.out.println(numGenerations);
+            System.out.println("Generazione: " + numGenerations);
         }
     }
 

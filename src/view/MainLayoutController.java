@@ -9,10 +9,13 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import model.Matrix;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class MainLayoutController {
@@ -39,6 +42,7 @@ public class MainLayoutController {
     private int cellSize = -1;
     private long aliveCells = 0;
     private GameAgent agent;
+    private volatile List<Runnable> runs = new ArrayList<>();
 
     @FXML
     public void initialize() {
@@ -60,14 +64,20 @@ public class MainLayoutController {
 
         game.addListener(ev -> {
             final boolean[][] newMatrix = ev.matrixUpdate();
+            final List<Runnable> tmpList = new ArrayList<>();
             for(int i = 0; i < numRows; i++) {
                 for(int j = 0; j < numColumns; j++) {
                     boolean newCellValue = newMatrix[i][j];
                     if(myMatrix[i][j] != newCellValue) {
-                        this.setCell(i, j, newCellValue);
+                        int finalI = i;
+                        int finalJ = j;
+                        tmpList.add(() -> this.setCell(finalI, finalJ, newCellValue));
+
                     }
                 }
             }
+            this.runs = tmpList;
+            Platform.runLater(() -> this.runs.forEach(Runnable::run));
             this.setLabelLiveCells(ev.getLiveCells());
         });
         this.drawGrid(numRows, numColumns);
