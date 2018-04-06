@@ -25,12 +25,12 @@ public interface SemaphoreManager {
     /**
      * Metodo per far aspettare tutti i worker finchè il manager non li rilascerà.
      */
-    public void waitAllWorkers();
+    public void makeAllWorkersWait();
 
     /**
      * Metodo che permette al manager di aspettare che tutti i worker finiscano il proprio compito.
      */
-    public void waitAllManager() throws InterruptedException;
+    public void makeManagerWaitForAll() throws InterruptedException;
 
     /**
      * Metodo per rilasciare tutti i worker.

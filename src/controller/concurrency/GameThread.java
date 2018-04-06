@@ -29,8 +29,8 @@ public class GameThread extends Thread {
      * @param computeSemaphore un semaforo che regola il calcolo del prossimo stato della matrice.
      * @param updateSemaphore il semaforo che regola l'aggiornamento della matrice di gioco.
      */
-    public GameThread(final int startRow, final int stopRow, final int startColumn, final int stopColumn,
-                      final Matrix m, final SemaphoreManager computeSemaphore, final SemaphoreManager updateSemaphore) {
+    GameThread(final int startRow, final int stopRow, final int startColumn, final int stopColumn,
+               final Matrix m, final SemaphoreManager computeSemaphore, final SemaphoreManager updateSemaphore) {
         DEBUG = false;
         this.startColumn = startColumn;
         this.stopColumn = stopColumn;
@@ -53,8 +53,8 @@ public class GameThread extends Thread {
      * @param computeSemaphore un semaforo che regola il calcolo del prossimo stato della matrice.
      * @param updateSemaphore il semaforo che regola l'aggiornamento della matrice di gioco.
      */
-    public GameThread(final int id, final int startRow, final int stopRow, final int startColumn, final int stopColumn,
-                      final Matrix m, final SemaphoreManager computeSemaphore, final SemaphoreManager updateSemaphore) {
+    GameThread(final int id, final int startRow, final int stopRow, final int startColumn, final int stopColumn,
+               final Matrix m, final SemaphoreManager computeSemaphore, final SemaphoreManager updateSemaphore) {
         this.id = id;
         DEBUG = true;
         this.startColumn = startColumn;

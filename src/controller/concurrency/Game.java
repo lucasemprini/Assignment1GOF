@@ -11,11 +11,24 @@ import java.util.List;
 public class Game {
     private boolean isInDebugMode = true;
     private final Chrono chronometer = new Chrono();
-    private final int nCores;
+    private final int numCores;
     private Matrix matrix;
     private final SemaphoreManager computeSemaphore;
     private final SemaphoreManager updateSemaphore;
     private final List<MatrixEventListener> listenersList = new ArrayList<>();
+
+    /**
+     * Costruttore principale per la classe Game.
+     * @param nCores il numero di Core della macchina su cui sta girando l'applicazione.
+     * @param numRows il numero di righe della matrice.
+     * @param numColumns il numero di colonne della matrice.
+     */
+    public Game(final int nCores, final int numRows, final int numColumns) {
+        this.numCores = nCores;
+        this.matrix = new MatrixImpl(numRows, numColumns);
+        this.computeSemaphore = new SemaphoreManagerImpl(this.numCores);
+        this.updateSemaphore = new SemaphoreManagerImpl(this.numCores);
+    }
 
     /**
      * Metodo che permette, dati i constraints, di creare un GameThread per gestire
@@ -28,7 +41,7 @@ public class Game {
      */
     private void createThreadAndStart(final int id, final int startRow, final int stopRow,
                                       final int startColumn, final int stopColumn) {
-        if(isInDebugMode) {
+        if(this.isInDebugMode) {
             GameThread c = new GameThread(id, startRow, stopRow, startColumn, stopColumn,
                     this.matrix, this.computeSemaphore, this.updateSemaphore);
             c.start();
@@ -44,10 +57,10 @@ public class Game {
      * il numero di processori della macchina su cui l'applicazione sta girando.
      */
     private void threadsSetup() {
-        final int blockRows = this.matrix.getNumRows() / this.nCores;
+        final int blockRows = this.matrix.getNumRows() / this.numCores;
         int stepRows = 0;
         int i;
-        for(i = 0; i < this.nCores - 1; i++) {
+        for(i = 0; i < this.numCores - 1; i++) {
             this.createThreadAndStart(i, stepRows, blockRows + stepRows,
                     0, this.matrix.getNumColumns());
             stepRows += blockRows;
@@ -58,26 +71,13 @@ public class Game {
     }
 
     /**
-     * Crea un nuovo Event e lo comunica alla lista dei listeners.
+     * Crea un nuovo Event e lo notifica alla lista dei listeners.
      */
     private void notifyMatrixUpdatedEvent() {
         final MatrixEvent event = new MatrixUpdatedEvent(this.matrix);
         for(MatrixEventListener l : this.listenersList) {
             l.matrixUpdated(event);
         }
-    }
-
-    /**
-     * Costruttore principale per la classe Game.
-     * @param nCores il numero di Core della macchina su cui sta girando l'applicazione.
-     * @param numRows il numero di righe della matrice.
-     * @param numColumns il numero di colonne della matrice.
-     */
-    public Game(final int nCores, final int numRows, final int numColumns) {
-        this.nCores = nCores;
-        this.matrix = new MatrixImpl(numRows, numColumns);
-        this.computeSemaphore = new SemaphoreManagerImpl(this.nCores);
-        this.updateSemaphore = new SemaphoreManagerImpl(this.nCores);
     }
 
     /**
@@ -92,45 +92,11 @@ public class Game {
      * Setta i Semafori e chiama threadsSetup
      */
     public void setupSemaphores() throws InterruptedException {
-        this.computeSemaphore.waitAllWorkers();
-        this.updateSemaphore.waitAllWorkers();
-        this.computeSemaphore.waitAllManager();
-        this.updateSemaphore.waitAllManager();
+        this.computeSemaphore.makeAllWorkersWait();
+        this.updateSemaphore.makeAllWorkersWait();
+        this.computeSemaphore.makeManagerWaitForAll();
+        this.updateSemaphore.makeManagerWaitForAll();
         this.threadsSetup();
-    }
-
-    /**
-     * Metodo che gestisce l'alternanza dei semafori all'interno del gioco.
-     */
-    public void playGame() {
-        try {
-            this.chronometer.start();
-            if(isInDebugMode) {
-                System.out.println("Manager rilascia tutte le compute");
-            }
-            computeSemaphore.releaseAllWorkers();
-            computeSemaphore.waitAllManager();
-            if(isInDebugMode) {
-                System.out.println("Manager ha ricevuto tutti i segnali di compute");
-            }
-            computeSemaphore.waitAllWorkers();
-            if(isInDebugMode) {
-                System.out.println("Manager rilascia tutte le update");
-            }
-            updateSemaphore.releaseAllWorkers();
-            updateSemaphore.waitAllManager();
-            if(isInDebugMode) {
-                System.out.println("Manager ha ricevuto tutti i segnali di update");
-            }
-            updateSemaphore.waitAllWorkers();
-            if(isInDebugMode) {
-                System.out.println("Time elapsed: " + this.chronometer.getTime());
-            }
-            this.notifyMatrixUpdatedEvent();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-            System.exit(1);
-        }
     }
 
     /**
@@ -148,5 +114,39 @@ public class Game {
      */
     public Matrix getMatrix() {
         return this.matrix;
+    }
+
+    /**
+     * Metodo che gestisce l'alternanza dei semafori all'interno del gioco.
+     */
+    public void playGame() {
+        try {
+            this.chronometer.start();
+            if(isInDebugMode) {
+                System.out.println("Manager rilascia tutte le compute");
+            }
+            computeSemaphore.releaseAllWorkers();
+            computeSemaphore.makeManagerWaitForAll();
+            if(isInDebugMode) {
+                System.out.println("Manager ha ricevuto tutti i segnali di compute");
+            }
+            computeSemaphore.makeAllWorkersWait();
+            if(isInDebugMode) {
+                System.out.println("Manager rilascia tutte le update");
+            }
+            updateSemaphore.releaseAllWorkers();
+            updateSemaphore.makeManagerWaitForAll();
+            if(isInDebugMode) {
+                System.out.println("Manager ha ricevuto tutti i segnali di update");
+            }
+            updateSemaphore.makeAllWorkersWait();
+            if(isInDebugMode) {
+                System.out.println("Time elapsed: " + this.chronometer.getTime());
+            }
+            this.notifyMatrixUpdatedEvent();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
     }
 }

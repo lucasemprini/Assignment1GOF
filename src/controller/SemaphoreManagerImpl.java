@@ -35,12 +35,12 @@ public class SemaphoreManagerImpl implements SemaphoreManager {
     }
 
     @Override
-    public void waitAllWorkers() {
+    public void makeAllWorkersWait() {
         this.workerSemaphore.drainPermits();
     }
 
     @Override
-    public void waitAllManager() throws InterruptedException {
+    public void makeManagerWaitForAll() throws InterruptedException {
         for(int i = 0; i < this.numWorkers; i++) {
             this.waitForManager();
         }
