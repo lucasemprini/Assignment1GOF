@@ -124,7 +124,7 @@ public class Game {
             }
             updateSemaphore.waitAllWorkers();
             if(isInDebugMode) {
-                System.out.println(this.chronometer.getTime());
+                System.out.println("Time elapsed: " + this.chronometer.getTime());
             }
             this.notifyMatrixUpdatedEvent();
         } catch (InterruptedException e) {

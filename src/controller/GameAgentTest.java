@@ -20,6 +20,7 @@ public class GameAgentTest {
 
     private long aliveCells = 0;
 
+    private static final int SLEEP_TIME = 10;
     private static final int NUM_GENERATION_TEST = 20;
 
     private static final String TIME_STRING = "Time elapsed (in millis): ";
@@ -70,7 +71,7 @@ public class GameAgentTest {
             this.chronometer.start();
             game.playGame();
             try {
-                Thread.sleep(10);
+                Thread.sleep(SLEEP_TIME);
             } catch(Exception ex){
                 ex.printStackTrace();
             }
