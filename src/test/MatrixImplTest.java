@@ -1,5 +1,7 @@
-package model;
+package test;
 
+import model.Matrix;
+import model.MatrixImpl;
 import model.utility.Chrono;
 import model.utility.DebugUtility;
 import org.junit.Test;

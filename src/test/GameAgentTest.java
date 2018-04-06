@@ -1,4 +1,4 @@
-package controller;
+package test;
 
 import controller.concurrency.Game;
 import model.utility.Chrono;
