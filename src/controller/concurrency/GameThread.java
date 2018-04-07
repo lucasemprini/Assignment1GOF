@@ -6,8 +6,8 @@ import model.utility.RulesUtility;
 
 public class GameThread extends Thread {
 
-    private final SemaphoreManager computeSemaphore;
-    private final SemaphoreManager updateSemaphore;
+    private final SemaphoreManager justUpdateSemaphore;
+    private final SemaphoreManager computeUpdateSemaphore;
 
     private final int startRow;
     private final int stopRow;
@@ -37,8 +37,8 @@ public class GameThread extends Thread {
         this.startRow = startRow;
         this.stopRow = stopRow;
         this.gameMatrix = m;
-        this.computeSemaphore = computeSemaphore;
-        this.updateSemaphore = updateSemaphore;
+        this.justUpdateSemaphore = computeSemaphore;
+        this.computeUpdateSemaphore = updateSemaphore;
     }
 
     /**
@@ -62,15 +62,15 @@ public class GameThread extends Thread {
         this.startRow = startRow;
         this.stopRow = stopRow;
         this.gameMatrix = m;
-        this.computeSemaphore = computeSemaphore;
-        this.updateSemaphore = updateSemaphore;
+        this.justUpdateSemaphore = computeSemaphore;
+        this.computeUpdateSemaphore = updateSemaphore;
     }
 
     @Override
     public void run() {
         while(true) {
             try {
-                this.computeSemaphore.waitForWorker();
+                this.justUpdateSemaphore.waitForWorker();
                 if(DEBUG) {
                     System.out.println("Worker "+ id +" entra nella fase di calcolo");
                 }
@@ -78,9 +78,9 @@ public class GameThread extends Thread {
                 if(DEBUG) {
                     System.out.println("Worker esce "+ id +" dalla fase di calcolo");
                 }
-                this.computeSemaphore.releaseWorker();
-                this.computeSemaphore.releaseManager();
-                this.updateSemaphore.waitForWorker();
+                this.justUpdateSemaphore.releaseWorker();
+                this.justUpdateSemaphore.releaseManager();
+                this.computeUpdateSemaphore.waitForWorker();
                 if(DEBUG) {
                     System.out.println("Worker "+ id +" entra in fase di aggiornamento");
                 }
@@ -88,8 +88,8 @@ public class GameThread extends Thread {
                 if(DEBUG) {
                     System.out.println("Worker esce "+ id +" dalla fase di aggiornamento");
                 }
-                this.updateSemaphore.releaseWorker();
-                this.updateSemaphore.releaseManager();
+                this.computeUpdateSemaphore.releaseWorker();
+                this.computeUpdateSemaphore.releaseManager();
             } catch (InterruptedException e) {
                 e.printStackTrace();
                 System.exit(1);

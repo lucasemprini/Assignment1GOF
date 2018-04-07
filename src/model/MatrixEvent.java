@@ -7,7 +7,7 @@ public interface MatrixEvent {
 
     /**
      * Metodo che ritorna l'aggiornamento di una matrice.
-     * @return la matrice aggiornata
+     * @return la matrice aggiornata.
      */
     public boolean[][] matrixUpdate();
 
