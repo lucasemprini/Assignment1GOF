@@ -43,6 +43,7 @@ public class MainLayoutController {
     private long aliveCells = 0;
     private GameAgent agent;
     private volatile List<Runnable> runs = new ArrayList<>();
+    private boolean isGridDrawn = false;
 
     @FXML
     public void initialize() {
@@ -72,7 +73,6 @@ public class MainLayoutController {
                         int finalI = i;
                         int finalJ = j;
                         tmpList.add(() -> this.setCell(finalI, finalJ, newCellValue));
-
                     }
                 }
             }
@@ -80,7 +80,9 @@ public class MainLayoutController {
             Platform.runLater(() -> this.runs.forEach(Runnable::run));
             this.setLabelLiveCells(ev.getLiveCells());
         });
-        this.drawGrid(numRows, numColumns);
+        if(!isGridDrawn) {
+            this.drawGrid(numRows, numColumns);
+        }
     }
 
     /**
@@ -166,7 +168,7 @@ public class MainLayoutController {
      */
     private static void fillCell(final GraphicsContext gc, final int row, final int column,
                                  final int cellSize, final Color color) {
-        gc.setStroke(GRID_COLOR);
+      //  gc.setStroke(GRID_COLOR);
         gc.setFill(color);
         gc.fillRect(column, row, cellSize, cellSize);
         gc.strokeRect(column, row, cellSize, cellSize);
@@ -203,7 +205,7 @@ public class MainLayoutController {
         for (int c = 0; c * cellSize < maxHeight && c < numColumns; c++) {
             gc.strokeLine(c * cellSize, 0, c * cellSize, maxHeight);
         }
-
+        this.isGridDrawn = true;
     }
 
     /**

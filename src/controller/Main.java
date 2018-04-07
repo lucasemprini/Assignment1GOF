@@ -18,10 +18,7 @@ public class Main extends Application {
 
     private static final String LAYOUT_PATH = "/view/game.fxml";
     private static final String WINDOW_TITLE = "Game Of Life";
-
-    private static final int TESTROWS = 1000;
-    private static final int TESTCOLUMNS = 1000;
-
+    private static final int THREAD_MULTIPLIER = 1;
 
     public static void main(String[] args) {
         launch(args);
@@ -77,7 +74,7 @@ public class Main extends Application {
      * @return il numero di Thread, coerente con il numero di processori.
      */
     private static int getNumberOfThreads() {
-        return Runtime.getRuntime().availableProcessors() + 1;
+        return (Runtime.getRuntime().availableProcessors() + 1)* THREAD_MULTIPLIER;
     }
 
     /**
