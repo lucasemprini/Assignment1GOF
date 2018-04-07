@@ -34,16 +34,8 @@ public class GameAgentTest {
         boolean[][] myMatrix = new boolean[dimension][dimension];
         game.addListener(ev -> {
             final boolean[][] newMatrix = ev.matrixUpdate();
-            for(int i = 0; i < SIMPLE_DIM; i++) {
-                for(int j = 0; j < SIMPLE_DIM; j++) {
-                    boolean newCellValue = newMatrix[i][j];
-                    if(myMatrix[i][j] != newCellValue) {
-                        myMatrix[i][j] = newCellValue;
-                        if(this.aliveCells != ev.getLiveCells()) {
-                            this.aliveCells = ev.getLiveCells();
-                        }
-                    }
-                }
+            if(this.aliveCells != ev.getLiveCells()) {
+                this.aliveCells = ev.getLiveCells();
             }
         });
     }

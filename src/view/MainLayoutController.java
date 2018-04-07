@@ -44,6 +44,7 @@ public class MainLayoutController {
     private GameAgent agent;
     private volatile List<Runnable> runs = new ArrayList<>();
     private boolean isGridDrawn = false;
+    private boolean roomAvailable = false;
 
     @FXML
     public void initialize() {
@@ -65,19 +66,22 @@ public class MainLayoutController {
 
         game.addListener(ev -> {
             final boolean[][] newMatrix = ev.matrixUpdate();
-            final List<Runnable> tmpList = new ArrayList<>();
-            for(int i = 0; i < numRows; i++) {
-                for(int j = 0; j < numColumns; j++) {
-                    boolean newCellValue = newMatrix[i][j];
-                    if(myMatrix[i][j] != newCellValue) {
-                        int finalI = i;
-                        int finalJ = j;
-                        tmpList.add(() -> this.setCell(finalI, finalJ, newCellValue));
+            if(roomAvailable) {
+                final List<Runnable> tmpList = new ArrayList<>();
+                for(int i = 0; i < numRows; i++) {
+                    for(int j = 0; j < numColumns; j++) {
+                        boolean newCellValue = newMatrix[i][j];
+                        if(myMatrix[i][j] != newCellValue) {
+                            int finalI = i;
+                            int finalJ = j;
+                            tmpList.add(() -> this.setCell(finalI, finalJ, newCellValue));
+                        }
                     }
                 }
+                this.runs = tmpList;
+                Platform.runLater(() -> this.runs.forEach(Runnable::run));
+
             }
-            this.runs = tmpList;
-            Platform.runLater(() -> this.runs.forEach(Runnable::run));
             this.setLabelLiveCells(ev.getLiveCells());
         });
         if(!isGridDrawn) {
@@ -182,30 +186,31 @@ public class MainLayoutController {
      * per il dato numero di righe e colonne.
      */
     private void drawGrid(final int numRows, final int numColumns) {
-
         //Se la dimensione delle celle non è ancora stata definita, chiama setCellSize
         if (this.cellSize == -1) {
-            setCellSize(numRows, numColumns);
+            roomAvailable = setCellSize(numRows, numColumns);
         }
 
-        final GraphicsContext gc = this.canvas.getGraphicsContext2D();
+        if(roomAvailable) {
+            final GraphicsContext gc = this.canvas.getGraphicsContext2D();
 
-        final double maxWidth = this.canvas.getWidth();
-        final double maxHeight = this.canvas.getHeight();
-        gc.setLineWidth(LINE_WIDTH);
-        gc.setStroke(GRID_COLOR);
+            final double maxWidth = this.canvas.getWidth();
+            final double maxHeight = this.canvas.getHeight();
+            gc.setLineWidth(LINE_WIDTH);
+            gc.setStroke(GRID_COLOR);
 
-        gc.setFill(DEAD_COLOR);
-        gc.fillRect(0, 0, maxWidth, maxHeight);
+            gc.setFill(DEAD_COLOR);
+            gc.fillRect(0, 0, maxWidth, maxHeight);
 
-        for (int r = 0; r * cellSize < maxHeight && r < numRows; r++) {
-            gc.strokeLine(0, r * cellSize, maxWidth, r * cellSize);
+            for (int r = 0; r * cellSize < maxHeight && r < numRows; r++) {
+                gc.strokeLine(0, r * cellSize, maxWidth, r * cellSize);
+            }
+
+            for (int c = 0; c * cellSize < maxHeight && c < numColumns; c++) {
+                gc.strokeLine(c * cellSize, 0, c * cellSize, maxHeight);
+            }
+            this.isGridDrawn = true;
         }
-
-        for (int c = 0; c * cellSize < maxHeight && c < numColumns; c++) {
-            gc.strokeLine(c * cellSize, 0, c * cellSize, maxHeight);
-        }
-        this.isGridDrawn = true;
     }
 
     /**
@@ -216,7 +221,7 @@ public class MainLayoutController {
      * @throws IllegalArgumentException se la dimensione delle celle non risulta identificabile
      * per il dato numero di righe e colonne.
      */
-    private void setCellSize(final int numRows, final int numColumns) {
+    private boolean setCellSize(final int numRows, final int numColumns) {
         final Optional<Integer> proposedCellSize;
 
         if (numRows > numColumns) {
@@ -225,10 +230,15 @@ public class MainLayoutController {
             proposedCellSize = suggestCellSize(numColumns);
         }
 
-        this.cellSize = proposedCellSize.orElseThrow(IllegalArgumentException::new);
+        if(proposedCellSize.isPresent()) {
+            this.cellSize = proposedCellSize.get();
 
-        this.canvas.setHeight(getPixelsForDimension(numRows, cellSize));
-        this.canvas.setWidth(getPixelsForDimension(numColumns, cellSize));
+            this.canvas.setHeight(getPixelsForDimension(numRows, cellSize));
+            this.canvas.setWidth(getPixelsForDimension(numColumns, cellSize));
+            return true;
+        } else {
+            return false;
+        }
     }
     /**
      * Metodo collegato all'omonimo, ma con diversa signature: controlla se la dimensione proposta
