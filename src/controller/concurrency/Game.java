@@ -13,8 +13,8 @@ public class Game {
     private final Chrono chronometer = new Chrono();
     private final int numCores;
     private Matrix matrix;
-    private final SemaphoreManager computeSemaphore;
-    private final SemaphoreManager updateSemaphore;
+    private final SemaphoreManager justUpdateSemaphore;
+    private final SemaphoreManager computeUpdateSemaphore;
     private final List<MatrixEventListener> listenersList = new ArrayList<>();
 
     /**
@@ -26,8 +26,8 @@ public class Game {
     public Game(final int nCores, final int numRows, final int numColumns) {
         this.numCores = nCores;
         this.matrix = new MatrixImpl(numRows, numColumns);
-        this.computeSemaphore = new SemaphoreManagerImpl(this.numCores);
-        this.updateSemaphore = new SemaphoreManagerImpl(this.numCores);
+        this.justUpdateSemaphore = new SemaphoreManagerImpl(this.numCores);
+        this.computeUpdateSemaphore = new SemaphoreManagerImpl(this.numCores);
     }
 
     /**
@@ -43,11 +43,11 @@ public class Game {
                                       final int startColumn, final int stopColumn) {
         if(this.isInDebugMode) {
             GameThread c = new GameThread(id, startRow, stopRow, startColumn, stopColumn,
-                    this.matrix, this.computeSemaphore, this.updateSemaphore);
+                    this.matrix, this.justUpdateSemaphore, this.computeUpdateSemaphore);
             c.start();
         } else {
             GameThread c = new GameThread(startRow, stopRow, startColumn, stopColumn,
-                    this.matrix, this.computeSemaphore, this.updateSemaphore);
+                    this.matrix, this.justUpdateSemaphore, this.computeUpdateSemaphore);
             c.start();
         }
     }
@@ -77,6 +77,9 @@ public class Game {
         final MatrixEvent event = new MatrixUpdatedEvent(this.matrix);
         for(MatrixEventListener l : this.listenersList) {
             l.matrixUpdated(event);
+            if(isInDebugMode) {
+                System.out.println("Celle vive: " + event.getLiveCells());
+            }
         }
     }
 
@@ -92,10 +95,10 @@ public class Game {
      * Setta i Semafori e chiama threadsSetup
      */
     public void setupSemaphores() throws InterruptedException {
-        this.computeSemaphore.makeAllWorkersWait();
-        this.updateSemaphore.makeAllWorkersWait();
-        this.computeSemaphore.makeManagerWaitForAll();
-        this.updateSemaphore.makeManagerWaitForAll();
+        this.justUpdateSemaphore.makeAllWorkersWait();
+        this.computeUpdateSemaphore.makeAllWorkersWait();
+        this.justUpdateSemaphore.makeManagerWaitForAll();
+        this.computeUpdateSemaphore.makeManagerWaitForAll();
         this.threadsSetup();
     }
 
@@ -123,23 +126,23 @@ public class Game {
         try {
             this.chronometer.start();
             if(isInDebugMode) {
-                System.out.println("Manager rilascia tutte le compute");
+                System.out.println("Manager rilascia tutti i permessi di update");
             }
-            computeSemaphore.releaseAllWorkers();
-            computeSemaphore.makeManagerWaitForAll();
-            if(isInDebugMode) {
-                System.out.println("Manager ha ricevuto tutti i segnali di compute");
-            }
-            computeSemaphore.makeAllWorkersWait();
-            if(isInDebugMode) {
-                System.out.println("Manager rilascia tutte le update");
-            }
-            updateSemaphore.releaseAllWorkers();
-            updateSemaphore.makeManagerWaitForAll();
+            justUpdateSemaphore.releaseAllWorkers();
+            justUpdateSemaphore.makeManagerWaitForAll();
             if(isInDebugMode) {
                 System.out.println("Manager ha ricevuto tutti i segnali di update");
             }
-            updateSemaphore.makeAllWorkersWait();
+            justUpdateSemaphore.makeAllWorkersWait();
+            if(isInDebugMode) {
+                System.out.println("Manager rilascia tutte li permessi di computeUpdate");
+            }
+            computeUpdateSemaphore.releaseAllWorkers();
+            computeUpdateSemaphore.makeManagerWaitForAll();
+            if(isInDebugMode) {
+                System.out.println("Manager ha ricevuto tutti i segnali di computeUpdate");
+            }
+            computeUpdateSemaphore.makeAllWorkersWait();
             if(isInDebugMode) {
                 System.out.println("Time elapsed: " + this.chronometer.getTime());
             }

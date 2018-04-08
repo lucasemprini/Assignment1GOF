@@ -6,7 +6,7 @@ public class GameAgent extends Thread {
 
     private final Game game;
     private int numGenerations = 0;
-    private static final int SLEEPTIME = 50;
+    private static final int SLEEP_TIME = 50;
 
     private volatile boolean isPaused;
 
@@ -20,7 +20,7 @@ public class GameAgent extends Thread {
         while (! this.isPaused){
             this.game.playGame();
             try {
-                Thread.sleep(SLEEPTIME);
+                Thread.sleep(SLEEP_TIME);
             } catch(Exception ex){
                 ex.printStackTrace();
             }
