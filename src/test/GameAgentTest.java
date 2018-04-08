@@ -5,18 +5,18 @@ import model.utility.Chrono;
 import model.utility.DebugUtility;
 import org.junit.Test;
 
-public class GameAgentTest {
+    public class GameAgentTest {
 
-    private final Chrono chronometer = new Chrono();
+        private final Chrono chronometer = new Chrono();
 
-    private static final int ONE_THREAD = 1;
-    private static final int FOUR_THREAD = 4;
-    private static final int FIVE_THREAD = 5;
-    private static final int TEN_THREAD = 10;
-    private static final int SIMPLE_DIM = 200;
-    private static final int MEDIUM_DIM = 1000;
-    private static final int NOT_SO_HARD_DIM = 3000;
-    private static final int HARD_DIM = 5000;
+        private static final int ONE_THREAD = 1;
+        private static final int FOUR_THREAD = 4;
+        private static final int FIVE_THREAD = 5;
+        private static final int TEN_THREAD = 10;
+        private static final int SIMPLE_DIM = 200;
+        private static final int MEDIUM_DIM = 1000;
+        private static final int NOT_SO_HARD_DIM = 3000;
+        private static final int HARD_DIM = 5000;
 
     private long aliveCells = 0;
 
@@ -28,12 +28,10 @@ public class GameAgentTest {
     /**
      * Metodo per aggiungere Listeners al Model di Game
      * @param game il Game model
-     * @param dimension la dimensione della matrice.
      */
-    private void addListenerToGame(final Game game, final int dimension) {
-        boolean[][] myMatrix = new boolean[dimension][dimension];
+    private void addListenerToGame(final Game game) {
         game.addListener(ev -> {
-            final boolean[][] newMatrix = ev.matrixUpdate();
+            ev.matrixUpdate();
             if(this.aliveCells != ev.getLiveCells()) {
                 this.aliveCells = ev.getLiveCells();
             }
@@ -58,7 +56,7 @@ public class GameAgentTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        this.addListenerToGame(game, dimension);
+        this.addListenerToGame(game);
         for(int i = 0; i < NUM_GENERATION_TEST; i++) {
             this.chronometer.start();
             game.playGame();
